@@ -44,10 +44,24 @@ console.log(this.state.isochrone)
     width: w
   }}>
 <GeoJSONLayer
-  data={this.state.isochrone[2]}
+  data={this.state.isochrone[0]}
   fillPaint={{
   		"fill-color": "blue",
   		"fill-opacity": .2
+  }}
+/>
+<GeoJSONLayer
+  data={this.state.isochrone[1]}
+  fillPaint={{
+  		"fill-color": "blue",
+  		"fill-opacity": .5
+  }}
+/>
+<GeoJSONLayer
+  data={this.state.isochrone[2]}
+  fillPaint={{
+  		"fill-color": "blue",
+  		"fill-opacity": .8
   }}
 />
 </Map>
