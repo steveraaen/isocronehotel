@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
 import axios from 'axios'
-import pk from '../env.js'
+import keys from '../env.js'
 
 const mapboxStyle = "mapbox://styles/mapbox/streets-v9"
 var w = window.innerWidth * .8;
 var h = window.innerHeight;
 const Map = ReactMapboxGl({
-  					accessToken: pk
+  					accessToken: keys.mbk
 					
 			});
 export default class View extends Component {
@@ -21,7 +21,7 @@ constructor(props) {
 
 componentDidMount() {
 
-	var url = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/-3.703790,40.416775?contours_minutes=5,10,15&contours_colors=6706ce,04e813,4286f4&polygons=true&access_token=' + pk
+	var url = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/-3.673830,40.419410?contours_minutes=5,10,15&contours_colors=6706ce,04e813,4286f4&polygons=true&access_token=' + keys.mbk
 		axios.get(url)
 		  .then( (response) =>{
 		  	this.setState({
@@ -36,7 +36,7 @@ render() {
 console.log(this.state.isochrone)
 	return (
 <Map
-	center= {[-3.703790, 40.416775]}
+	center= {[-3.673830, 40.419410]}
 	zoom= {[13]}
   	style={mapboxStyle}
   	containerStyle={{
