@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
 import axios from 'axios'
-import keys from '../env.js'
+import keys from '../keys.js'
 
 const mapboxStyle = "mapbox://styles/mapbox/streets-v9"
 var w = window.innerWidth * .8;
