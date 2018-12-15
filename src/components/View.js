@@ -40,7 +40,7 @@ console.log(this.state.isochrone)
 	zoom= {[13]}
   	style={mapboxStyle}
   	containerStyle={{
-  	 left: w * .2,
+  	
     height: h,
     width: w
   }}>
