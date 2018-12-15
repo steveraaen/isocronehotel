@@ -3,69 +3,67 @@ import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
 import axios from 'axios'
 import keys from '../keys.js'
 
-const mapboxStyle = "mapbox://styles/mapbox/streets-v9"
-var w = window.innerWidth * .8;
-var h = window.innerHeight;
+const mapboxStyle = require("../style.json")
+
 const Map = ReactMapboxGl({
-  					accessToken: keys.mbk
-					
+  					accessToken: keys.mbk					
 			});
+console.log(mapboxStyle)
 export default class View extends Component {
 constructor(props) {
 	super(props)
-	this.state = {
-		isochrone: {}
-	}
 
 }
 
 componentDidMount() {
-
-	var url = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/-3.673830,40.419410?contours_minutes=5,10,15&contours_colors=6706ce,04e813,4286f4&polygons=true&access_token=' + keys.mbk
-		axios.get(url)
-		  .then( (response) =>{
-		  	this.setState({
-		  		isochrone: response.data.features
-		  	})
-		  })
-		  .catch(function (error) {
-		    console.log(error);
-		  });
+  this.setState({
+    isochrone: this.props.appState.isochrone
+  })
 }
 render() {
-console.log(this.state.isochrone)
+  if(!this.props.iso) {
 	return (
 <Map
-	center= {[-3.673830, 40.419410]}
+	center= {[this.props.appState.location[0], this.props.appState.location[1]]}
 	zoom= {[13]}
   	style={mapboxStyle}
   	containerStyle={{
-  	
-    height: h,
-    width: w
+    height: this.props.appState.h,
+    width: this.props.appState.w
   }}>
-<GeoJSONLayer
-  data={this.state.isochrone[0]}
+</Map>
+)} else { return(
+  <Map
+  center= {[this.props.appState.location[0], this.props.appState.location[1]]}
+  zoom= {[13]}
+    style={mapboxStyle}
+    containerStyle={{
+    height: this.props.appState.h,
+    width: this.props.appState.w
+  }}>
+    <GeoJSONLayer
+  data={this.props.iso[0]}
   fillPaint={{
-  		"fill-color": "blue",
-  		"fill-opacity": .2
+      "fill-color": "blue",
+      "fill-opacity": .2
   }}
 />
 <GeoJSONLayer
-  data={this.state.isochrone[1]}
+  data={this.props.iso[1]}
   fillPaint={{
-  		"fill-color": "blue",
-  		"fill-opacity": .5
+      "fill-color": "blue",
+      "fill-opacity": .5
   }}
 />
 <GeoJSONLayer
-  data={this.state.isochrone[2]}
+  data={this.props.iso[2]}
   fillPaint={{
-  		"fill-color": "blue",
-  		"fill-opacity": .8
+      "fill-color": "blue",
+      "fill-opacity": .8
   }}
 />
 </Map>
 )
+  }
 }
 }

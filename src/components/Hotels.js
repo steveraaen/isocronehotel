@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import choices from '../selections.js'
+
 
 export default class Hotels extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			city: "Paris"
+			city: choices.cities[0].name
 		}
+		this.handleClick = this.handleClick.bind(this)
+	}
+	handleClick(c, l) {
+		
+		this.props.getSelectedCity(c, l)
 	}
 
-	componentDidMount() {
-		axios.get('/hotels')
-		.then(val => {
-			console.log(val.data)
-			this.setState({
-				hotels: val
-			})
-		})
-			}
-
 	render() {
+		var cityList = choices.cities.map((cty, idx) => {
+			return (<a key={idx} href="#" onClick={() => this.handleClick(cty.name, cty.location)}> <li>{cty.name}</li></a>)
+		})
 		return (
-			<div></div>
-
+		
+				<div style={{color: 'black'}}>
+					<ul style={{listStyleType: "none"}} >{cityList}</ul>
+				</div>
+		
 			)
 	}
 }
