@@ -11,7 +11,9 @@ export default class Chain extends Component {
 		this.handleChainClick = this.handleChainClick.bind(this)
 	}
 	handleChainClick(ch) {
-		this.props.getSelectedChain(ch)
+		this.props.getSelectedChain(ch, () => {
+			this.props.getAll(this.props.city, this.props.chain)
+		})
 	}
 
 	render() {

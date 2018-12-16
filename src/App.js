@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
 import Map from './components/View.js';
-import Cities from './components/Cities.js';
+import SelectParams from './components/SelectParams.js';
 import Chains from './components/Chains.js';
 import keys from './keys.js'
+import choices from './selections.js'
+
 var w = window.innerWidth;
 var h = window.innerHeight;
 
@@ -14,15 +16,18 @@ class App extends Component {
 		this.state={
 			w: w,
 			h: h,
-    		city: "Madrid",
-    		location: [-3.673830,40.419410]
+			city: choices.cities[0].name,
+			chain: choices.chains[0],
+    		location: choices.cities[0].location,
+    		choices: choices
 		}
-		this.getSelectedCity = this.getSelectedCity.bind(this)
+		this.getMapAndIso = this.getMapAndIso.bind(this)
 		this.getSelectedChain = this.getSelectedChain.bind(this)
+
 	}
-	getSelectedCity(cty, loc) {
+	getMapAndIso(cty, loc) {
 		this.setState({
-			selectedCity: cty,
+			city: cty,
 			location: loc
 		}, () => {
 			var url = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + this.state.location[0] + ',' + this.state.location[1] + '?contours_minutes=5,10,15&contours_colors=6706ce,04e813,4286f4&polygons=true&access_token=' + keys.mbk
@@ -30,27 +35,34 @@ class App extends Component {
 			  .then( (response) =>{
 				this.setState({
 					isochrone: response.data.features
-				})
+				}, this.getSelectedChain(this.state.city, this.state.chain))
 			})
 			  .catch(function (error) {
 			    console.log(error);
 			  });
 			})
 		}
-	getSelectedChain(c) {
+	getSelectedChain(ct,ch) {
 		this.setState({
-			chain: c
-		})
-	}
-	componentDidMount() {
-		this.getSelectedCity(this.state.city, this.state.location)
-		axios.get('/hotels')
+			chain: ch
+		}, () => {
+		axios.get('/hotels',{ params: {city: ct, chain: ch}
+    })
 		.then(val => {
 			console.log(val.data)
 			this.setState({
 				hotels: val
 			})
+		})	
 		})
+	}
+
+
+
+	componentDidMount() {
+		this.getMapAndIso(this.state.city, this.state.location)
+		this.getSelectedChain(this.state.city, this.state.chain)
+
 	}
 
   render() {
@@ -60,11 +72,9 @@ class App extends Component {
       <div>
         <Map appState={this.state} iso={this.state.isochrone} updateLocation={this.updateLocation}/>
         	<div className="aside">
-        		<Cities appState={this.state} getSelectedCity={this.getSelectedCity}/>
+        		<SelectParams appState={this.state} getMapAndIso={this.getMapAndIso}  getSelectedChain={this.getSelectedChain}/>
       	</div>
-        	<div className="asider">
-        		<Chains hotelList={this.state.hotels} getSelectedChain={this.getSelectedChain}/>
-      	</div>
+
       </div>
     );
   }
