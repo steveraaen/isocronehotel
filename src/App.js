@@ -3,7 +3,7 @@ import axios from 'axios'
 import './App.css';
 import Map from './components/View.js';
 import SelectParams from './components/SelectParams.js';
-import Chains from './components/Chains.js';
+import HotelList from './components/HotelList.js';
 import keys from './keys.js'
 import choices from './selections.js'
 
@@ -74,7 +74,9 @@ class App extends Component {
         	<div className="aside">
         		<SelectParams appState={this.state} getMapAndIso={this.getMapAndIso}  getSelectedChain={this.getSelectedChain}/>
       	</div>
-
+        	<div className="asider">
+        		<HotelList hotels={this.state.hotels}/>
+      	</div>
       </div>
     );
   }

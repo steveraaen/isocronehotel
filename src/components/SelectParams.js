@@ -21,6 +21,7 @@ export default class SelectParams extends Component {
 	}
 
 	render() {
+		
 		const cityList = this.props.appState.choices.cities.map((cty, idx) => {
 			return (<button key={idx} onClick={() => this.handleClick(cty.nameCtry, cty.location)}>{cty.name}</button>)
 		})
