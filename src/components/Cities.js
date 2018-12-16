@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import choices from '../selections.js'
 
 
-export default class Hotels extends Component {
+export default class Cities extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -22,7 +22,7 @@ export default class Hotels extends Component {
 		return (
 		
 				<div style={{color: 'black'}}>
-					<ul style={{listStyleType: "none"}} >{cityList}</ul>
+					<ul style={{listStyleType: "none", color: 'black'}} >{cityList}</ul>
 				</div>
 		
 			)

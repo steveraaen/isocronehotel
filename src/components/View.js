@@ -35,7 +35,7 @@ render() {
 )} else { return(
   <Map
   center= {[this.props.appState.location[0], this.props.appState.location[1]]}
-  zoom= {[13]}
+  zoom= {[12]}
     style={mapboxStyle}
     containerStyle={{
     height: this.props.appState.h,

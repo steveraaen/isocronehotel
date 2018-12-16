@@ -21,6 +21,19 @@
   align-items: center;
   justify-content: center;
 }
+.asider {
+  background-color: lightGray;
+  left: 35vw;
+  top: 5vh;
+  position: absolute;
+  width: 30vw;
+  height: 30vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

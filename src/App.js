@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
 import Map from './components/View.js';
-import Hotels from './components/Hotels.js';
+import Cities from './components/Cities.js';
+import Chains from './components/Chains.js';
 import keys from './keys.js'
 var w = window.innerWidth;
 var h = window.innerHeight;
@@ -17,6 +18,7 @@ class App extends Component {
     		location: [-3.673830,40.419410]
 		}
 		this.getSelectedCity = this.getSelectedCity.bind(this)
+		this.getSelectedChain = this.getSelectedChain.bind(this)
 	}
 	getSelectedCity(cty, loc) {
 		this.setState({
@@ -35,7 +37,11 @@ class App extends Component {
 			  });
 			})
 		}
-
+	getSelectedChain(c) {
+		this.setState({
+			chain: c
+		})
+	}
 	componentDidMount() {
 		this.getSelectedCity(this.state.city, this.state.location)
 		axios.get('/hotels')
@@ -54,7 +60,10 @@ class App extends Component {
       <div>
         <Map appState={this.state} iso={this.state.isochrone} updateLocation={this.updateLocation}/>
         	<div className="aside">
-        		<Hotels appState={this.state} getSelectedCity={this.getSelectedCity}/>
+        		<Cities appState={this.state} getSelectedCity={this.getSelectedCity}/>
+      	</div>
+        	<div className="asider">
+        		<Chains hotelList={this.state.hotels} getSelectedChain={this.getSelectedChain}/>
       	</div>
       </div>
     );
