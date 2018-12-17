@@ -24,6 +24,11 @@ var choices = {
 		name: "Amsterdam",
 		nameCtry: "Amsterdam, nl",
 		location: [4.9036, 52.3680]
+	},
+	{
+		name: "Saint Jean Pied de Port",
+		nameCtry: "Saint Jean Pied de Port, fr",
+		location: [1.2333, 43.1667]
 	}
 	],
 	chains: ["Marriot", "Westin", "Hilton", "Intercontinental"]

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
+import ReactMapboxGl, { Feature, GeoJSONLayer, Layer } from "react-mapbox-gl";
 import axios from 'axios'
 import keys from '../keys.js'
 
@@ -12,15 +12,27 @@ console.log(mapboxStyle)
 export default class View extends Component {
 constructor(props) {
 	super(props)
-
 }
 
-componentDidMount() {
-  this.setState({
-    isochrone: this.props.appState.isochrone
-  })
-}
+
+
 render() {
+if(this.props.isoList) {
+  var isos = this.props.isoList.map((iso, idx) => {
+    console.log(iso)
+return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .8}}/>)
+  })
+} else { return  (<div>+++++++++++++++++++++++++++</div>)}
+
+  if(this.props.hotels ) { 
+  var mkrs= this.props.hotels.map((htl, idx) => {  
+  return(
+<Feature key={idx} coordinates={[htl.coordinates.longitude, htl.coordinates.latitude]}/>
+    )
+})
+} else { return  (<div>..............................</div>)}
+
+
   if(!this.props.iso) {
 	return (
 <Map
@@ -31,6 +43,10 @@ render() {
     height: this.props.appState.h,
     width: this.props.appState.w
   }}>
+  {isos}
+       <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
+     {mkrs}
+    </Layer>
 </Map>
 )} else { return(
   <Map
@@ -41,27 +57,9 @@ render() {
     height: this.props.appState.h,
     width: this.props.appState.w
   }}>
-    <GeoJSONLayer
-  data={this.props.iso[0]}
-  fillPaint={{
-      "fill-color": "blue",
-      "fill-opacity": .2
-  }}
-/>
-<GeoJSONLayer
-  data={this.props.iso[1]}
-  fillPaint={{
-      "fill-color": "blue",
-      "fill-opacity": .5
-  }}
-/>
-<GeoJSONLayer
-  data={this.props.iso[2]}
-  fillPaint={{
-      "fill-color": "blue",
-      "fill-opacity": .8
-  }}
-/>
+
+
+
 </Map>
 )
   }

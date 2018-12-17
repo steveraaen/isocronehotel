@@ -8,14 +8,14 @@ export default class HotelList extends Component {
 		this.handleHotelClick = this.handleHotelClick.bind(this)
 	}
 	handleHotelClick(ch) {
-		console.log('clicked')
+		console.log(ch)
 	}
 
 	render() {
-		console.log(this.props.hotels)
+
 		if(this.props.hotels) {
-		var hotels = this.props.hotels.data.map((nm, idx) => {
-			return(<button key={idx} onClick={() => this.handleHotelClick()}>{nm.name}</button>)
+		var hotels = this.props.hotels.map((nm, idx) => {
+			return(<button key={idx} onClick={() => this.handleHotelClick(nm)}>{nm.name}</button>)
 		})
 	} else { 
 		var hotels = (<div>Nothing to show</div>) 
