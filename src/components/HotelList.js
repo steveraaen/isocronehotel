@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Collapsible from 'react-collapsible';
 
 
 export default class HotelList extends Component {
@@ -7,15 +7,16 @@ export default class HotelList extends Component {
 		super(props)
 		this.handleHotelClick = this.handleHotelClick.bind(this)
 	}
-	handleHotelClick(ch) {
-		console.log(ch)
+	handleHotelClick(lo, la) {
+		this.props.getIsosForList(lo, la)
+		console.log(lo)
 	}
 
 	render() {
 
 		if(this.props.hotels) {
 		var hotels = this.props.hotels.map((nm, idx) => {
-			return(<button key={idx} onClick={() => this.handleHotelClick(nm)}>{nm.name}</button>)
+			return(<button key={idx} onClick={() => this.handleHotelClick(nm.coordinates.longitude, nm.coordinates.latitude)}>{nm.name}</button>)
 		})
 	} else { 
 		var hotels = (<div>Nothing to show</div>) 
@@ -23,9 +24,11 @@ export default class HotelList extends Component {
 	}
 		return (
 		
-				<div style={{color: 'black'}}>
-					<ul style={{listStyleType: "none", color: 'black'}} >{hotels}</ul>
-				</div>
+      <Collapsible trigger="Start here" open="true">
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+  			{hotels}
+  		</div>
+     </Collapsible>
 		
 			)
 	}

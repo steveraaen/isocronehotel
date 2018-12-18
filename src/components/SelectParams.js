@@ -30,12 +30,12 @@ export default class SelectParams extends Component {
 		})
 		return (
 			<div>
-				<div style={{color: 'black'}}>
-					<ul style={{listStyleType: "none", color: 'black'}} >{cityList}</ul>
-				</div>
-							<div style={{color: 'black'}}>
-					<ul style={{listStyleType: "none"}} >{chainList}</ul>
-				</div>
+				
+					<div style={{display: 'flex', flexDirection: 'column', color: 'black'}} >{cityList}</div>
+				
+							
+					<div style={{display: 'flex', flexDirection: 'column'}} >{chainList}</div>
+			
 			</div>
 		
 			)

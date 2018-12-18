@@ -13,8 +13,8 @@
   left: 5vw;
   top: 5vh;
   position: absolute;
-  width: 30vw;
-  height: 30vh;
+  width: 16vw;
+ /* height: 30vh;*/
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@
   top: 5vh;
   position: absolute;
   width: 30vw;
-  height: 30vh;
+/*  height: 30vh;*/
   border-radius: 12px;
   display: flex;
   flex-direction: column;

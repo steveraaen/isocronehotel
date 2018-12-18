@@ -84,7 +84,7 @@ class App extends Component {
         		<SelectParams appState={this.state} getMapAndIso={this.getMapAndIso}  getSelectedChain={this.getSelectedChain}/>
       	</div>
         	<div className="asider">
-        		<HotelList hotels={this.state.hotels}/>
+        		<HotelList hotels={this.state.hotels} getIsosForList={this.getIsosForList}/>
       	</div>
       </div>
     );

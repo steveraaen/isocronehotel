@@ -20,7 +20,7 @@ render() {
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
     console.log(iso)
-return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .8}}/>)
+return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .4}}/>)
   })
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 
@@ -44,7 +44,7 @@ return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue",
     width: this.props.appState.w
   }}>
   {isos}
-       <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
+       <Layer type="symbol" id="marker" >
      {mkrs}
     </Layer>
 </Map>
