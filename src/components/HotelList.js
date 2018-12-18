@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 import Collapsible from 'react-collapsible';
-
-
+import './CompStyles.css';
 export default class HotelList extends Component {
 	constructor(props) {
 		super(props)
 		this.handleHotelClick = this.handleHotelClick.bind(this)
 	}
-	handleHotelClick(lo, la) {
-		this.props.getIsosForList(lo, la)
-		console.log(lo)
+	handleHotelClick(lo, la, nm) {
+		this.props.getIsosForList(lo, la, nm)
+		console.log(nm)
 	}
 
 	render() {
 
 		if(this.props.hotels) {
 		var hotels = this.props.hotels.map((nm, idx) => {
-			return(<button key={idx} onClick={() => this.handleHotelClick(nm.coordinates.longitude, nm.coordinates.latitude)}>{nm.name}</button>)
+			return(<button style={{ textOverflow: 'ellipsis'}} key={idx} onClick={() => this.handleHotelClick(nm.coordinates.longitude, nm.coordinates.latitude, nm)}>{nm.name}</button>)
 		})
 	} else { 
 		var hotels = (<div>Nothing to show</div>) 
 		return  hotels 
 	}
-		return (
-		
-      <Collapsible trigger="Start here" open="true">
-      <div style={{display: 'flex', flexDirection: 'column'}}>
+		return (		
+      <Collapsible trigger={this.props.chain +"s in " + this.props.city  } open={true}>
+      <div style={{padding: '1vh', display: 'flex', flexDirection: 'column'}}>
   			{hotels}
   		</div>
      </Collapsible>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import Collapsible from 'react-collapsible';
+import './CompStyles.css';
 
 
 export default class SelectParams extends Component {
@@ -30,12 +31,14 @@ export default class SelectParams extends Component {
 		})
 		return (
 			<div>
-				
+			<Collapsible trigger="Cities" open={true}>
 					<div style={{display: 'flex', flexDirection: 'column', color: 'black'}} >{cityList}</div>
-				
-							
+		
+						<div style={{height: "4vh"}}> </div>
+				<Collapsible trigger="Hotel Brands" open={false}>						
 					<div style={{display: 'flex', flexDirection: 'column'}} >{chainList}</div>
-			
+				</Collapsible>
+				</Collapsible>
 			</div>
 		
 			)

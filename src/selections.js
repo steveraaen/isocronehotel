@@ -13,7 +13,7 @@ var choices = {
 	{
 		name: "London",
 		nameCtry: "London, en",
-		location: [0.1278, 51.5074]
+		location: [-0.1504, 51.5037]
 	},
 	{
 		name: "Rome",
@@ -26,11 +26,26 @@ var choices = {
 		location: [4.9036, 52.3680]
 	},
 	{
-		name: "Saint Jean Pied de Port",
-		nameCtry: "Saint Jean Pied de Port, fr",
-		location: [1.2333, 43.1667]
+		name: "Brussels",
+		nameCtry: "Brussels, be",
+		location: [4.34878, 50.85045]
+	},
+	{
+		name: "Istanbul",
+		nameCtry: "Istanbul, tk",
+		location: [28.94966, 41.01384]
+	},
+	{
+		name: "Berlin",
+		nameCtry: "Berlin, gr",
+		location: [13.404954, 52.520008]
+	},
+	{
+		name: "Milano",
+		nameCtry: "Milano, it",
+		location: [9.191383, 45.464211]
 	}
 	],
-	chains: ["Marriot", "Westin", "Hilton", "Intercontinental"]
+	chains: ["Marriot", "Westin", "Hilton", "Intercontinental", "Sheraton"]
 }
 module.exports = choices

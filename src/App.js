@@ -4,6 +4,7 @@ import './App.css';
 import Map from './components/View.js';
 import SelectParams from './components/SelectParams.js';
 import HotelList from './components/HotelList.js';
+import Details from './components/Details.js';
 import keys from './keys.js'
 import choices from './selections.js'
 
@@ -34,13 +35,17 @@ class App extends Component {
 			this.getSelectedChain(this.state.city, this.state.chain)
 		})
 		}
-	getIsosForList(lo, la) {
+	getIsosForList(lo, la, nm) {
 
 		var urlb = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + lo + ',' + la + '?contours_minutes=2,5,10&contours_colors=6706ce,04e813,4286f4&polygons=true&access_token=' + keys.mbk
 			axios.get(urlb)
 			  .then( (resp) =>{		
 			  
-			  	this.setState({isoList: resp.data.features})
+			  	this.setState({
+			  		isoList: resp.data.features,
+			  		location: [lo, la],
+			  		curHotel: nm
+			  	})
 		})
 			  .catch(function (error) {
 			    console.log(error);
@@ -83,8 +88,11 @@ class App extends Component {
         	<div className="aside">
         		<SelectParams appState={this.state} getMapAndIso={this.getMapAndIso}  getSelectedChain={this.getSelectedChain}/>
       	</div>
+        	<div className="asidec">
+        		<HotelList city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIsosForList={this.getIsosForList}/>
+      	</div>
         	<div className="asider">
-        		<HotelList hotels={this.state.hotels} getIsosForList={this.getIsosForList}/>
+        		<Details curHotel={this.state.curHotel}/>
       	</div>
       </div>
     );

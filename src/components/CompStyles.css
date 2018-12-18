@@ -1,0 +1,8 @@
+button {
+	background-color: coral;
+	font-size: 16;
+	font-weight: bold;
+	border-radius: 6px;
+	margin: 2px;
+	 text-overflow: ellipsis;
+}
