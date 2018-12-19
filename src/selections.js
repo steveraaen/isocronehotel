@@ -32,7 +32,7 @@ var choices = {
 	},
 	{
 		name: "Istanbul",
-		nameCtry: "Istanbul, tk",
+		nameCtry: "Istanbul, tr",
 		location: [28.94966, 41.01384]
 	},
 	{
@@ -41,9 +41,14 @@ var choices = {
 		location: [13.404954, 52.520008]
 	},
 	{
-		name: "Milano",
-		nameCtry: "Milano, it",
+		name: "Milan",
+		nameCtry: "Milan, it",
 		location: [9.191383, 45.464211]
+	},
+	{
+		name: "Dubrovnik",
+		nameCtry: "Dubrovnik, hr",
+		location: [18.1080093, 42.6408005]
 	}
 	],
 	chains: ["Marriot", "Westin", "Hilton", "Intercontinental", "Sheraton"]

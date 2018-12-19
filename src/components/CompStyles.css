@@ -1,8 +1,40 @@
 button {
 	background-color: coral;
-	font-size: 16;
+	font-size: 12;
 	font-weight: bold;
 	border-radius: 6px;
-	margin: 2px;
+	margin-bottom: 1vh;
 	 text-overflow: ellipsis;
+}
+.buttonText {
+	font-size: 24pt;
+}
+.card {
+	background-color: white;
+	border-color: black;
+	border-width: 1px;
+	border-radius: 8px;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+}
+.details {
+		background-color: white;
+		max-height: 30vh;
+	width: 48vw;
+	flex: 1;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	overflow: scroll;
+}
+.deta {
+	background-color: white;
+	flex: .16;
+	padding-left: 1vw;
+	border-right: 1px;
+	border-color: black;
+}
+.title {
+	font-size: 20pt;
+	color: blue;
 }

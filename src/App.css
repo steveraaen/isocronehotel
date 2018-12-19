@@ -9,33 +9,53 @@
   height: 40vmin;
 }
 .aside {
-  background-color: lightGray;
-  left: 5vw;
+  background-color: rgba(0,0,0, .38);
+  flex: 1;
+  flex-direction: column;
+  left: 2vw;
   top: 5vh;
   position: absolute;
-  width: 16vw;
- /* height: 30vh;*/
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 22vw;
+  height: 94vh;
+  
 }
-.asidec {
-  background-color: lightGray;
-  left: 25vw;
-  top: 5vh;
-  position: absolute;
-  width: 24vw;
-/*  height: 30vh;*/
+.asideCities {
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  max-height: 28vh;
+  overflow: scroll;
+  margin-bottom: 2vh;
+}
+.asideChains {
+
+  left: 5vw;
+  top: 34vh;
+  position: absolute;
+  width: 18vw;
+  height: 24vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+.asideHotels {
+
+  left: 5vw;
+  top: 60vh;
+  position: absolute;
+  width: 18vw;
+  height: 24vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
 }
 .asider {
-  background-color: lightGray;
+  background-color: white;
   left: 52vw;
   top: 5vh;
   position: absolute;
