@@ -9,22 +9,26 @@ button {
 .buttonText {
 	font-size: 24pt;
 }
+.currentHotel {
+
+}
 .card {
 	background-color: white;
 	border-color: black;
 	border-width: 1px;
 	border-radius: 8px;
-	flex: 1;
+	top: 0vh;
+	left: 32vh;
+	position: absolute;
+	font-size: 26pt;
 	flex-direction: column;
-	align-items: center;
+	justify-content: space-around;
 }
 .details {
-		background-color: white;
-		max-height: 30vh;
-	width: 48vw;
-	flex: 1;
-	flex-wrap: nowrap;
-	justify-content: space-around;
+	height: 26vh;
+	overflow: scroll;
+}
+tbody {
 	overflow: scroll;
 }
 .deta {

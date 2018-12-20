@@ -21,11 +21,16 @@ class App extends Component {
 			city: choices.cities[0].name,
 			chain: choices.chains[0],
     		location: choices.cities[0].location,
-    		choices: choices
+    		choices: choices,
+    		zoom: 13
 		}
 		this.getMapAndIso = this.getMapAndIso.bind(this)
 		this.getSelectedChain = this.getSelectedChain.bind(this)
 		this.getIsosForList = this.getIsosForList.bind(this)
+		this.zoom = this.zoom.bind(this)
+	}
+	zoom() {
+		this.setState({zoom: 16})
 	}
 	getMapAndIso(cty, loc) {
 		this.setState({
@@ -62,7 +67,8 @@ class App extends Component {
     	})
 		.then(val => {		
 			this.setState({
-				hotels: val.data
+				hotels: val.data,
+				zoom: 13
 			}, () => {			
 				for(let i = 0; i < this.state.hotels.length; i++) {			
 				this.getIsosForList(this.state.hotels[i].coordinates.longitude, this.state.hotels[i].coordinates.latitude)		
@@ -78,7 +84,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map appState={this.state} hotels={this.state.hotels} isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} isoList={this.state.isoList}/>
+        <Map dtls={this.state.details} appState={this.state} hotels={this.state.hotels} isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} isoList={this.state.isoList}/>
         <div className="aside">
         	<div className="asideCities">
         		<SelectCities appState={this.state} getMapAndIso={this.getMapAndIso} />
@@ -87,11 +93,11 @@ class App extends Component {
         		<SelectChain appState={this.state} getSelectedChain={this.getSelectedChain}/>
       	</div>
         	<div className="asideCities">
-        		<HotelList city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIsosForList={this.getIsosForList}/>
+        		<HotelList zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIsosForList={this.getIsosForList}/>
+      	</div>
       	</div>
         	<div className="asider">
         		<Details dtls={this.state.details} curHotel={this.state.curHotel}/>
-      	</div>
       	</div>
       </div>
     );

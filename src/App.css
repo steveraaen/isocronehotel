@@ -56,11 +56,9 @@
 }
 .asider {
   background-color: white;
-  left: 52vw;
+  right: 2vw;
   top: 5vh;
   position: absolute;
-  width: 24vw;
-/*  height: 30vh;*/
   border-radius: 12px;
   display: flex;
   flex-direction: column;

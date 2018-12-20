@@ -49,7 +49,7 @@ return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue",
     
 <Map
 	center= {[this.props.appState.location[0], this.props.appState.location[1]]}
-	zoom= {[13]}
+	zoom= {[this.props.appState.zoom]}
   	style={mapboxStyle}
   	containerStyle={{
     height: this.props.appState.h,
