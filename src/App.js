@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Navbar } from 'react-bootstrap';
 import './App.css';
 import Map from './components/View.js';
+import Input from './components/Input.js';
 import SelectCities from './components/SelectCities.js';
 import SelectChain from './components/SelectChain.js';
 import HotelList from './components/HotelList.js';
 import Details from './components/Details.js';
 import keys from './keys.js'
 import choices from './selections.js'
-
+import europe from './europe.js'
+import countries from './countries.js'
 var w = window.innerWidth;
 var h = window.innerHeight;
 var isoList =[]
@@ -18,6 +21,7 @@ class App extends Component {
 		this.state={
 			w: w,
 			h: h,
+			allCities: europe,
 			city: choices.cities[0].name,
 			chain: choices.chains[0],
     		location: choices.cities[0].location,
@@ -26,9 +30,11 @@ class App extends Component {
 		}
 		this.getMapAndIso = this.getMapAndIso.bind(this)
 		this.getSelectedChain = this.getSelectedChain.bind(this)
-		this.getIsosForList = this.getIsosForList.bind(this)
+		this.getIso = this.getIso.bind(this)
 		this.zoom = this.zoom.bind(this)
+		this.getRestaurants = this.getRestaurants.bind(this)
 	}
+
 	zoom() {
 		this.setState({zoom: 16})
 	}
@@ -40,7 +46,14 @@ class App extends Component {
 			this.getSelectedChain(this.state.city, this.state.chain)
 		})
 		}
-	getIsosForList(lo, la, nm) {
+	getRestaurants(lo, la) {
+		console.log(lo, la)
+		axios.get('/details',{ params: {longitude: lo, latitude: la}})
+				.then( (res) => {
+					this.setState({details: res})
+				})	
+	}
+	getIso(lo, la, nm) {
 		var urlb = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + lo + ',' + la + '?contours_minutes=2,5,10&contours_colors=6706ce,04e813,4286f4&polygons=true&access_token=' + keys.mbk
 			axios.get(urlb)
 			  .then( (resp) =>{					  
@@ -48,11 +61,6 @@ class App extends Component {
 			  		isoList: resp.data.features,
 			  		location: [lo, la],
 			  		curHotel: nm
-			  	}, () => {
-				axios.get('/details',{ params: {longitude: this.state.location[0], latitude: this.state.location[1] }})
-				.then( (res) => {
-					this.setState({details: res})
-				})	  		
 			  	})
 			})
 			  .catch(function (error) {
@@ -70,8 +78,8 @@ class App extends Component {
 				hotels: val.data,
 				zoom: 13
 			}, () => {			
-				for(let i = 0; i < this.state.hotels.length; i++) {			
-				this.getIsosForList(this.state.hotels[i].coordinates.longitude, this.state.hotels[i].coordinates.latitude)		
+				if(this.state.hotels) {
+				this.getIso(this.state.hotels[0].coordinates.longitude, this.state.hotels[0].coordinates.latitude)		
 				}
 			})
 		})	
@@ -84,24 +92,23 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map dtls={this.state.details} appState={this.state} hotels={this.state.hotels} isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} isoList={this.state.isoList}/>
-        <div className="aside">
-        	<div className="asideCities">
-        		<SelectCities appState={this.state} getMapAndIso={this.getMapAndIso} />
-      	</div>
-        	<div className="asideCities">
+        <Map dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} />
+        <div style={{top: '5vh', position: 'absolute'}}>
+      
+        		<Input />
+      
+{/*        	<div className="asideCities">
         		<SelectChain appState={this.state} getSelectedChain={this.getSelectedChain}/>
       	</div>
         	<div className="asideCities">
-        		<HotelList zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIsosForList={this.getIsosForList}/>
+        		<HotelList zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
+      	</div>*/}
       	</div>
-      	</div>
-        	<div className="asider">
+        	<div className="aside">
         		<Details dtls={this.state.details} curHotel={this.state.curHotel}/>
       	</div>
       </div>
     );
   }
 }
-
 export default App;

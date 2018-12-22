@@ -7,7 +7,8 @@ export default class HotelList extends Component {
 		this.handleHotelClick = this.handleHotelClick.bind(this)
 	}
 	handleHotelClick(lo, la, nm) {
-		this.props.getIsosForList(lo, la, nm)
+		this.props.getIso(lo, la, nm)
+		this.props.getRestaurants(lo, la)
 		this.props.zoom()
 		console.log(nm)
 	}

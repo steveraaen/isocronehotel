@@ -20,7 +20,7 @@ render() {
 // ---------------- make isochromes  
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
-    console.log(iso)
+
 return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .3}}/>)
   })
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}

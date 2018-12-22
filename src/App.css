@@ -15,16 +15,20 @@
   left: 2vw;
   top: 5vh;
   position: absolute;
-  width: 22vw;
+  max-width: 26vw;
   height: 94vh;
   
+}
+.top{
+  top: 6vh;
+  position: absolute;
 }
 .asideCities {
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 28vh;
+  max-height: 33vh;
   overflow: scroll;
   margin-bottom: 2vh;
 }

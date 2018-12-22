@@ -28,8 +28,8 @@ export default class Details extends Component {
 		}
 		if(this.props.curHotel) {
 				return (
-				<div>
-					<Jumbotron >
+				<div style={{maxWidth: "30vw"}}>
+					<Jumbotron style={{paddingLeft: '3vw'}}>
 						<h1>{this.props.curHotel.name}</h1>
 						<h2>{this.props.curHotel.location.address1}</h2>
 						<h3>Yelp Rating: {this.props.curHotel.rating}</h3>

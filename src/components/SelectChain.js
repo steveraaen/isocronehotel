@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Collapsible from 'react-collapsible';
 import './CompStyles.css';
 
-export default class SelectCities extends Component {
+export default class SelectChain extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {

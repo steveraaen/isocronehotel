@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
 import Collapsible from 'react-collapsible';
+import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
+import europe from '../europe'
 import './CompStyles.css';
 
 export default class SelectCities extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-		}
-		this.handleClick = this.handleClick.bind(this)
-		
+		this.handleClick = this.handleClick.bind(this)	
+
 	}
 	handleClick(c, l) {		
 		this.props.getMapAndIso(c, l)
-	}		
-	
-	render() {
-		
-		const cityList = this.props.appState.choices.cities.map((cty, idx) => {
-			return (<button className="buttonText" key={idx} onClick={() => this.handleClick(cty.nameCtry, cty.location)}>{cty.name}</button>)
+			console.log('clicked')
+	}	
+	componentDidMount() {
+		console.log(europe)
+		var buttonsSet = new Set()
+		europe.map((cty, idx) => {
+			if(!buttonsSet.country) {
+				buttonsSet.add(cty.country + ", " + cty.iso2)
+			}
+			console.log(buttonsSet)
 		})
+	}	
+		render() {
+console.log(this.dd)
 
-		return (
-			<div>
-			<Collapsible triggerStyle={{color: "black", textAlign: 'center', fontSize: "22pt", fontWeight: 'bold'}} trigger="Cities" open={true}>
-					<div style={{display: 'flex', flexDirection: 'column', color: 'black'}} >{cityList}</div>
-		</Collapsible>
-			</div>
-		
-			)
+
+			return (
+				<div style={{fontSize: '18pt'}}>
+					{this.dd}
+				</div>
+				)
 	}
 }

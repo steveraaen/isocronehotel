@@ -3,7 +3,7 @@ var choices = {
 	{
 		name: "Madrid",
 		nameCtry: "Madrid, es",
-		location: [-3.673830, 40.419410]
+		location: [-3.6834, 40.4]
 	},
 	{
 		name: "Paris",
