@@ -4,9 +4,8 @@ import { Navbar } from 'react-bootstrap';
 import './App.css';
 import Map from './components/View.js';
 import Input from './components/Input.js';
-import SelectCities from './components/SelectCities.js';
-import SelectChain from './components/SelectChain.js';
 import HotelList from './components/HotelList.js';
+import HotelInfo from './components/HotelInfo.js';
 import Details from './components/Details.js';
 import keys from './keys.js'
 import choices from './selections.js'
@@ -33,6 +32,7 @@ class App extends Component {
 		this.getIso = this.getIso.bind(this)
 		this.zoom = this.zoom.bind(this)
 		this.getRestaurants = this.getRestaurants.bind(this)
+		 this.hover = this.hover.bind(this)
 	}
 
 	zoom() {
@@ -73,8 +73,41 @@ class App extends Component {
 		}, () => {
 		axios.get('/hotels',{ params: {city: ct, chain: ch}
     	})
-		.then(val => {		
+		.then(val => {	
+console.log(val)
+			var hotObs = []
+			var geoObj= {
+				type: 'FeatureCollection',
+				features: hotObs
+			}
+			const colors = ['green', 'red', 'yellow', 'purple', 'orange', 'white', 'black', 'pink', 'brown', 'coral', 'lightBlue']
+
+			for(let i=0; i < val.data.length; i++) {
+				/*for(let j=0; j < val.data.length; j++) {}*/
+
+				hotObs.push({
+				type: "Feature",
+				geometry: {type: "Point", coordinates: [val.data[i].coordinates.longitude, val.data[i].coordinates.latitude]},	
+				properties: {
+					"color": colors[i],
+				 	display_phone: val.data[i].display_phone,
+				 	image_url: val.data[i].image_url,
+				 	location: val.data[i].location,
+				 	name: val.data[i].name,
+				 	phone: val.data[i].phone,
+				 	price:val.data[i].price,
+				 	rating:val.data[i].rating,
+				 	review_count: val.data[i].review_count
+				 }
+				}
+				)
+
+			}
+
+
 			this.setState({
+				geoObj: geoObj,
+				hotelsGeoJSON: hotObs,
 				hotels: val.data,
 				zoom: 13
 			}, () => {			
@@ -85,6 +118,11 @@ class App extends Component {
 		})	
 	})
 }
+hover(b) {
+  this.setState({
+    hoverHotel: b
+  })  
+}
 	componentDidMount() {
 		this.getMapAndIso(this.state.city, this.state.location)
 		this.getSelectedChain(this.state.city, this.state.chain)
@@ -92,19 +130,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} />
+        <Map hover={this.hover} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} />
         <div style={{top: '5vh', position: 'absolute'}}>
       
-        		<Input />
-      
-{/*        	<div className="asideCities">
-        		<SelectChain appState={this.state} getSelectedChain={this.getSelectedChain}/>
-      	</div>
+        		<Input getMapAndIso={this.getMapAndIso}/>
+
         	<div className="asideCities">
         		<HotelList zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
-      	</div>*/}
       	</div>
-        	<div className="aside">
+        	<div className="bannerTop">
+        		<HotelInfo {...this.state} hoverHotel={this.state.hoverHotel}/>
+      	</div>
+      	</div>
+        	<div className="asider">
         		<Details dtls={this.state.details} curHotel={this.state.curHotel}/>
       	</div>
       </div>

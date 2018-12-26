@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapboxGl, { Feature, GeoJSONLayer, Layer, Marker } from "react-mapbox-gl";
+import ReactMapboxGl, { Feature, GeoJSONLayer, Layer, Marker, Popup } from "react-mapbox-gl";
 import ReactTooltip from 'react-tooltip'
 import axios from 'axios'
 import keys from '../keys.js'
@@ -13,37 +13,51 @@ console.log(mapboxStyle)
 export default class View extends Component {
 constructor(props) {
 	super(props)
+  this.state={
+    puvis: 'hidden'
+  }
+}
+componentDidMount(){
+
 }
 
 render() {
-
+console.log(this.props.hotelsGeoJSON)
 // ---------------- make isochromes  
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
 
-return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .3}}/>)
+return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .2}}/>)
   })
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 
 // ------------------ make hotel markers
-  if(this.props.hotels ) { 
-  var mkrs= this.props.hotels.map((htl, idx) => {  
-  return(
-<Marker 
-    key={idx} 
-    onClick={() => {console.log(htl.name)}} 
-    coordinates={[htl.coordinates.longitude, htl.coordinates.latitude]}
-    anchor="topRight"
-      offset={{
-    'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
-  }}>
-    <h4>{this.props.appState.chain}</h4>
-    </Marker>
-    )
+  if(this.props.hotelsGeoJSON) { 
+var points = this.props.hotelsGeoJSON.map(( pt, idx) => {
+return(
+    <GeoJSONLayer 
+
+        key={idx}
+        data={pt}      
+        type='circle'
+        circlePaint={{
+          'circle-color': [ 
+          'match',
+          ['get', 'rating'],
+          2, '#fbb03b',
+          3, '#223b53',
+          4, '#e55e5e',
+          5, '#3bb2d0',
+          /* other */ '#ccc' 
+          ]
+        }}
+
+      />
+)
 })
 } else { return  (<div>..............................</div>)}
 
-  if(!this.props.iso) {
+  if(!this.props.iso && this.props.hotelsGeoJSON) {
 	return (
     <div>
     
@@ -55,11 +69,12 @@ return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue",
     height: this.props.appState.h,
     width: this.props.appState.w
   }}>
-  {isos}
-       <div >
-     {mkrs}
-    </div>
+  <div>{points}</div>
+
+  <div>{isos}</div>
+
 </Map>
+
 </div>
 )} else { return(
   <Map

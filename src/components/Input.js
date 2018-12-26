@@ -6,6 +6,8 @@ import axios from 'axios';
 import keys from '../keys';
 import allCities from '../cities';
 
+allCities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0)); 
+
 export default class Input extends Component {
 	constructor(props) {
 		super(props)
@@ -20,24 +22,27 @@ export default class Input extends Component {
     	allCities.map((cty, idx) => {
     		if(cty.city.toUpperCase().includes(this.state.value.toUpperCase())) {
     		ccty.push(cty)
-    		 } 
-    		
+    		 }    		
     	})
     	this.setState({cmap: ccty})
     });
   }
-	componentDidMount() {
+  handleClick(ct, lo, la){
+  	this.props.getMapAndIso(ct, lo, la)
+   this.setState({cmap: ""})
+  }
+/*	componentDidMount() {
 		axios.get('https://api.opencagedata.com/geocode/v1/json?key=' + keys.ocg + '&q=Frauenplan+1%2C+99423+Weimar%2C+Germany&pretty=1')
 		.then((resp, error) => {
 			this.setState({
 				ocResp: resp
 			})
 		})
-	}
+	}*/
 	render() {
 		if(this.state.cmap) {
 		var matches = this.state.cmap.map((lne, idx) => {
-			return(<li key={idx}>{lne.city + ", " + lne.country}</li>)
+			return(<li key={idx} onClick={() => this.handleClick(lne.city,[lne.lng, lne.lat])}>{lne.city + ", " + lne.country} </li>)
 		})
 		}
 		return (
@@ -46,15 +51,15 @@ export default class Input extends Component {
         <FormGroup
           controlId="formBasicText"
         >
+        <div style={{display: 'flex',flexDirection: 'column'}}>
           <ControlLabel>Enter the name of a place or an address</ControlLabel>
-          <FormControl
-            type="text"
+          <input           
             value={this.state.value}
             placeholder="Enter text"
             onChange={this.handleChange}
-            
           />
-         <ul>{matches}</ul>
+         </div>
+         <ul style={{maxHeight: '38vh', overflow: 'auto', listStyleType:"none"}}>{matches}</ul>
      
         </FormGroup>
       </form>
