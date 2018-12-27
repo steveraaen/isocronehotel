@@ -16,18 +16,22 @@ constructor(props) {
   this.state={
     puvis: 'hidden'
   }
+  this.handleHover = this.handleHover.bind(this)
 }
-componentDidMount(){
-
+handleHover(b) {
+  console.log(b)
+  this.props.hover(b)
 }
-
 render() {
-console.log(this.props.hotelsGeoJSON)
+var ratings = "#FFDA70,#FF9878,#FF80A3,#FF89E5,#DE91FF,#AD99FF,#A2BFFF,#AAF0FF,#B3FFE4"
 // ---------------- make isochromes  
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
+return (<GeoJSONLayer 
 
-return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue", "fill-opacity": .2}}/>)
+          key={idx} 
+          data={iso}   
+          fillPaint={{ "fill-color": "yellow", "fill-opacity": .20}}/>)
   })
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 
@@ -36,21 +40,30 @@ return (<GeoJSONLayer  key={idx} data={iso}   fillPaint={{ "fill-color": "blue",
 var points = this.props.hotelsGeoJSON.map(( pt, idx) => {
 return(
     <GeoJSONLayer 
-
+     
+        circleOnMouseEnter={() => this.handleHover(pt)}
         key={idx}
         data={pt}      
         type='circle'
+
         circlePaint={{
           'circle-color': [ 
           'match',
           ['get', 'rating'],
-          2, '#fbb03b',
-          3, '#223b53',
-          4, '#e55e5e',
-          5, '#3bb2d0',
-          /* other */ '#ccc' 
-          ]
+          ["1"], '#FFDA70',
+          ["1.5"], '#FF9878',
+          ["2"], '#FF80A3',
+          ["2.5"], '#FF89E5',
+          ["3"], '#DE91FF',
+          ["3.5"], '#AD99FF',
+          ["4"], '#A2BFFF',
+          ["4.5"], '#AAF0FF',
+          ["5"], '#B3FFE4',
+          /* other */ 'cyan' 
+          ],
+        'circle-radius': {stops: [[14, 10], [16, 8]]}
         }}
+       
 
       />
 )
@@ -79,7 +92,7 @@ return(
 )} else { return(
   <Map
   center= {[this.props.appState.location[0], this.props.appState.location[1]]}
-  zoom= {[12]}
+  zoom= {[this.props.appState.zoom]}
     style={mapboxStyle}
     containerStyle={{
     height: this.props.appState.h,

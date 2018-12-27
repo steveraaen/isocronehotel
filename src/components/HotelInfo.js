@@ -9,7 +9,8 @@ export default class HotelInfo extends Component {
 		if(this.props.hoverHotel) {
 		return(
 			<Well>
-				<h2>{this.props.hoverHotel.name}</h2>
+				<h3>{this.props.hoverHotel.properties.name}</h3>
+				<h3>{this.props.hoverHotel.properties.rating}</h3>
 			</Well>
 			)
 	} else return null

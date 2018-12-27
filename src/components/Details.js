@@ -30,10 +30,10 @@ export default class Details extends Component {
 				return (
 				<div style={{maxWidth: "30vw"}}>
 					<Jumbotron style={{paddingLeft: '3vw'}}>
-						<h1>{this.props.curHotel.name}</h1>
-						<h2>{this.props.curHotel.location.address1}</h2>
-						<h3>Yelp Rating: {this.props.curHotel.rating}</h3>
-						<span className="price">Cost: {this.props.curHotel.price}</span>
+						<h1>{this.props.curHotel.properties.name}</h1>
+						<h2>{this.props.curHotel.properties.location.address1}</h2>
+						<h3>Yelp Rating: {this.props.curHotel.properties.rating}</h3>
+						<span className="price">Cost: {this.props.curHotel.properties.price}</span>
 					</Jumbotron>
 						
 						<div className="details">

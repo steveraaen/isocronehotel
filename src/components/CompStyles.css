@@ -1,18 +1,24 @@
 button {
-	background-color: coral;
-	font-size: 12;
+	font-size: 14pt;
 	font-weight: bold;
 	border-radius: 6px;
-	margin-bottom: 1vh;
+	margin-bottom: .5vh;
 	 text-overflow: ellipsis;
 }
+
 .buttonText {
 	font-size: 24pt;
 }
 .currentHotel {
 
 }
+.input {
+	left: 5vw;
+	max-width: 28vw;
+	top: 6vh;
+	position: absolute;
 
+}
 .card {
 	background-color: white;
 	border-color: black;

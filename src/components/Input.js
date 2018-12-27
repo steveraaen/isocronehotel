@@ -4,9 +4,9 @@ import Typeahead from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import axios from 'axios';
 import keys from '../keys';
-import allCities from '../cities';
+import eucities from '../eucities.js';
 
-allCities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0)); 
+/*eucities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0));*/ 
 
 export default class Input extends Component {
 	constructor(props) {
@@ -19,7 +19,7 @@ export default class Input extends Component {
 	  handleChange(e) {
     this.setState({ value: e.target.value }, () => {
     	var ccty=[]
-    	allCities.map((cty, idx) => {
+    	eucities.map((cty, idx) => {
     		if(cty.city.toUpperCase().includes(this.state.value.toUpperCase())) {
     		ccty.push(cty)
     		 }    		
@@ -42,7 +42,7 @@ export default class Input extends Component {
 	render() {
 		if(this.state.cmap) {
 		var matches = this.state.cmap.map((lne, idx) => {
-			return(<li key={idx} onClick={() => this.handleClick(lne.city,[lne.lng, lne.lat])}>{lne.city + ", " + lne.country} </li>)
+			return(<div key={idx} style={{flexDirection: 'column'}}><button style={{minWidth: '20vw'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
 		})
 		}
 		return (
@@ -59,7 +59,7 @@ export default class Input extends Component {
             onChange={this.handleChange}
           />
          </div>
-         <ul style={{maxHeight: '38vh', overflow: 'auto', listStyleType:"none"}}>{matches}</ul>
+         <ul style={{maxHeight: '38vh', overflow: 'auto', listStyleType:"none", flexDirection: 'column', flexWrap: 'wrap'}}>{matches}</ul>
      
         </FormGroup>
       </form>
