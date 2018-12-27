@@ -28,6 +28,7 @@
   top: 0vh;
   width: 28vw;
   position: absolute;
+  border-radius: 6px;
 }
 .asideCities {
   border-radius: 12px;

@@ -46,12 +46,12 @@ export default class Input extends Component {
 		})
 		}
 		return (
-			<Well>
+			<Well style={{backgroundColor: 'gray'}}>
       <form>
         <FormGroup
           controlId="formBasicText"
         >
-        <div style={{display: 'flex',flexDirection: 'column'}}>
+        <div style={{color: 'white', display: 'flex',flexDirection: 'column'}}>
           <ControlLabel>Enter the name of a place or an address</ControlLabel>
           <input           
             value={this.state.value}

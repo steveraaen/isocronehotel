@@ -23,7 +23,7 @@ handleHover(b) {
   this.props.hover(b)
 }
 render() {
-var ratings = "#FFDA70,#FF9878,#FF80A3,#FF89E5,#DE91FF,#AD99FF,#A2BFFF,#AAF0FF,#B3FFE4"
+
 // ---------------- make isochromes  
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
@@ -31,7 +31,7 @@ return (<GeoJSONLayer
 
           key={idx} 
           data={iso}   
-          fillPaint={{ "fill-color": "yellow", "fill-opacity": .20}}/>)
+          fillPaint={{ "fill-color": "white", "fill-opacity": .20}}/>)
   })
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 

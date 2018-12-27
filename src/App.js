@@ -26,6 +26,7 @@ class App extends Component {
     		choices: choices,
     		zoom: 14,
     		ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"]
+  /*  		ratingColors: ["rgba(77,210,255,.8)", "rgba(81,254,250,.8)", "rgba(86,254,204,.8)", "rgba(90,254,160,.8)", "rgba(95,254,119,.8)", "rgba(119,254,100,.8)", "rgba(165,254,104,.8)", "rgba(207,254, 09,.8)", "rgba(248,254,114,.8)"]*/	
 		}
 		this.getMapAndIso = this.getMapAndIso.bind(this)
 		this.getSelectedChain = this.getSelectedChain.bind(this)
@@ -35,7 +36,7 @@ class App extends Component {
 		 this.hover = this.hover.bind(this)
 	}
 
-		
+	
 
 	zoom() {
 		this.setState({zoom: 16})
@@ -132,7 +133,8 @@ class App extends Component {
 				 	review_count: val.data[i].review_count
 				 }
 				}
-				)
+			)
+			hotObs.sort((a,b) =>  (b.properties.rating > a.properties.rating) ? 1 : ((a.properties.rating > b.properties.rating) ? -1 : 0)); 		
 
 			}
 			this.setState({
