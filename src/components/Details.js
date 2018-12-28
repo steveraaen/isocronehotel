@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import Collapsible from 'react-collapsible';
-import { Button, Jumbotron, Table } from 'react-bootstrap';
+import { Jumbotron, Table } from 'react-bootstrap';
 import './CompStyles.css';
 
 export default class Details extends Component {
-	constructor(props) {
-		super(props)
-	}
-	
+
 	render() {
 		if(this.props.dtls) {
 			var deets = this.props.dtls.data.map((place, idx) => {
@@ -37,7 +33,7 @@ export default class Details extends Component {
 					</Jumbotron>
 						
 						<div className="details">
-						<Table>
+						<Table style={{maxWidth: "30vw"}}>
 						
 						<thead>	
 							<tr>

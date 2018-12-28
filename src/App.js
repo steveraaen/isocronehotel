@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Navbar } from 'react-bootstrap';
 import './App.css';
 import Map from './components/View.js';
 import Input from './components/Input.js';
 import HotelList from './components/HotelList.js';
 import HotelInfo from './components/HotelInfo.js';
 import Details from './components/Details.js';
+import DistanceKey from './components/DistanceKey.js';
 import keys from './keys.js'
 import choices from './selections.js'
 import europe from './europe.js'
-import countries from './countries.js'
 var w = window.innerWidth;
 var h = window.innerHeight;
-var isoList =[]
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -25,7 +23,8 @@ class App extends Component {
     		location: choices.cities[0].location,
     		choices: choices,
     		zoom: 14,
-    		ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"]
+    		ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"],
+    		showKey: true
   /*  		ratingColors: ["rgba(77,210,255,.8)", "rgba(81,254,250,.8)", "rgba(86,254,204,.8)", "rgba(90,254,160,.8)", "rgba(95,254,119,.8)", "rgba(119,254,100,.8)", "rgba(165,254,104,.8)", "rgba(207,254, 09,.8)", "rgba(248,254,114,.8)"]*/	
 		}
 		this.getMapAndIso = this.getMapAndIso.bind(this)
@@ -34,6 +33,8 @@ class App extends Component {
 		this.zoom = this.zoom.bind(this)
 		this.getRestaurants = this.getRestaurants.bind(this)
 		 this.hover = this.hover.bind(this)
+		 this.hoverOut = this.hoverOut.bind(this)
+		 this.toggleKey = this.toggleKey.bind(this)
 	}
 
 	
@@ -84,7 +85,7 @@ class App extends Component {
 			const colors = this.state.ratingColors
 			var ratingCol=[]
 			for(let i=0; i < val.data.length; i++) {
-				console.log(typeof(val.data[i].rating))
+			
 					switch(val.data[i].rating) {
 						  case 1:  
 						    ratingCol[i] = colors[0]
@@ -156,28 +157,39 @@ hover(b) {
     hoverHotel: b
   })  
 }
+hoverOut() {
+  this.setState({
+    hoverHotel: null
+  })  
+}
 	componentDidMount() {
 		this.getMapAndIso(this.state.city, this.state.location)
 		this.getSelectedChain(this.state.city)
 	}
+	toggleKey() {
+		this.setState({
+			showKey: !this.state.showKey
+		})
+	}
   render() {
+  	if(this.state.showKey) {
+  		var shadeKey = (<div className="key">
+        		<DistanceKey showKey={this.state.showKey} toggleKey={this.toggleKey}/>
+      	</div>)
+  	} else{ shadeKey = null}
     return (
       <div>
-        <Map ratingColors={this.state.ratingColors} hover={this.hover} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} updateLocation={this.updateLocation} />
-        <div className="input">
-      
+        <Map ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
+        <div className="input">     
         		<Input getMapAndIso={this.getMapAndIso}/>
-
         	<div className="asideCities">
         		<HotelList ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
-      	</div>
-        	<div className="bannerTop">
-        		<HotelInfo ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} hoverHotel={this.state.hoverHotel}/>
       	</div>
       	</div>
         	<div className="asider">
         		<Details dtls={this.state.details} curHotel={this.state.curHotel}/>
       	</div>
+      	{shadeKey}
       </div>
     );
   }

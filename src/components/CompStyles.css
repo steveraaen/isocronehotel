@@ -5,7 +5,9 @@ button {
 	margin-bottom: .5vh;
 	 text-overflow: ellipsis;
 }
-
+.mapboxgl-popup-content {
+	background-color:  var(--dynColor);
+}
 .buttonText {
 	font-size: 24pt;
 }

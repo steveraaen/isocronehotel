@@ -11,20 +11,8 @@ export default class HotelList extends Component {
 		}
 		
 		this.handleHotelClick = this.handleHotelClick.bind(this)
-		this.matchButton = this.matchButton.bind(this)
-
 	}
-		matchButton(b) {	
-		if(this.state.hoverHotel && this.state.hotels) {
-			console.log(b.properties.name)
-			for(let i = 0; i < this.state.hotels.length; i++) {
-				console.log(this.state.hotels[i].name)
-				if(this.state.hotels[i].name === b.properties.name)  {
-					this.setState({activeColor: 'blue'})
-					}
-				}
-			}
-		}
+
 	handleHotelClick(lo, la, nm) {
 		this.props.getIso(lo, la, nm)
 		this.props.getRestaurants(lo, la)
@@ -34,17 +22,17 @@ export default class HotelList extends Component {
 
 	render() {
 		
-		if(this.props.hotelsGeoJSON && this.props.hoverHotel) {
+		if(this.props.hotelsGeoJSON) {
 		var hotels = this.props.hotelsGeoJSON.map((nm, idx) => {
 
 			return(<button style={{ backgroundColor: nm.properties.ratingCol, fontSize: "16pt", overflow: 'ellipsis'}} key={idx} onClick={() => this.handleHotelClick(nm.geometry.coordinates[0], nm.geometry.coordinates[1], nm)}>{nm.properties.name}</button>)
 		})
 	} else { 
-		var hotels = (<div>Nothing to show</div>) 
+		 hotels = (<div>Nothing to show</div>) 
 		return  hotels 
 	}
 		return (		
-      <Collapsible triggerStyle={{color: "black", alignItems: 'center', fontSize: "22pt", fontWeight: 'bold'}} trigger={"Hotels in " + this.props.city  } open={true}>
+      <Collapsible triggerStyle={{color: "white", alignItems: 'center', fontSize: "18pt", fontWeight: 'bold'}} trigger={"Hotels in " + this.props.city  } open={true}>
       <div style={{padding: '1vh', display: 'flex', flexDirection: 'column'}}>
   			{hotels}
   		</div>

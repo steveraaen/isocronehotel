@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapboxGl, { Feature, GeoJSONLayer, Layer, Marker, Popup } from "react-mapbox-gl";
-import ReactTooltip from 'react-tooltip'
-import axios from 'axios'
+import ReactMapboxGl, { GeoJSONLayer, Popup } from "react-mapbox-gl";
 import keys from '../keys.js'
 import './CompStyles.css';
 const mapboxStyle = require("../mbxdull/style.json")
@@ -9,7 +7,7 @@ const mapboxStyle = require("../mbxdull/style.json")
 const Map = ReactMapboxGl({
   					accessToken: keys.mbk					
 			});
-console.log(mapboxStyle)
+
 export default class View extends Component {
 constructor(props) {
 	super(props)
@@ -18,12 +16,29 @@ constructor(props) {
   }
   this.handleHover = this.handleHover.bind(this)
 }
+
 handleHover(b) {
   console.log(b)
   this.props.hover(b)
+  
+}
+handleHoverOut() {
+  this.props.hoverOut()
+  
 }
 render() {
-
+  if(this.props.hoverHotel) {
+    var dynColor = this.props.hoverHotel.properties.ratingCol
+    var ppup = (
+    <Popup
+     style={{backgroundColor: dynColor}}
+      coordinates={this.props.hoverHotel.geometry.coordinates}
+      offset={{
+        'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
+      }}>
+      <h3 style={{backgroundColor: this.props.hoverHotel.properties.ratingCol,  padding: "24px", margin: "-26px", borderWidth: "1px", borderRadius: "6px"}}>{this.props.hoverHotel.properties.name}</h3>
+    </Popup>
+      )} else {ppup = null}
 // ---------------- make isochromes  
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
@@ -39,13 +54,13 @@ return (<GeoJSONLayer
   if(this.props.hotelsGeoJSON) { 
 var points = this.props.hotelsGeoJSON.map(( pt, idx) => {
 return(
-    <GeoJSONLayer 
-     
+    <GeoJSONLayer      
         circleOnMouseEnter={() => this.handleHover(pt)}
+        circleOnMouseLeave={() => this.handleHoverOut()}
+      
         key={idx}
         data={pt}      
         type='circle'
-
         circlePaint={{
           'circle-color': [ 
           'match',
@@ -83,8 +98,8 @@ return(
     width: this.props.appState.w
   }}>
   <div>{points}</div>
-
   <div>{isos}</div>
+  <div>{ppup}</div>
 
 </Map>
 

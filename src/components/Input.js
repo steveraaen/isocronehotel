@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, Well } from 'react-bootstrap';
-import Typeahead from 'react-bootstrap-typeahead';
-import 'react-bootstrap-typeahead/css/Typeahead.css'
-import axios from 'axios';
-import keys from '../keys';
+import { FormGroup, ControlLabel,  Well } from 'react-bootstrap';
 import eucities from '../eucities.js';
 
 /*eucities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0));*/ 
@@ -22,7 +18,8 @@ export default class Input extends Component {
     	eucities.map((cty, idx) => {
     		if(cty.city.toUpperCase().includes(this.state.value.toUpperCase())) {
     		ccty.push(cty)
-    		 }    		
+    		 }  
+         return ccty  		
     	})
     	this.setState({cmap: ccty})
     });
