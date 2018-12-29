@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
 export default class DistanceKey extends Component {
-	constructor(props) {
-		super(props)
-	}
 
 	handleClick() {
 		this.props.toggleKey()
 	}
 	render() {
-		console.log(this.props)
+		
 		if(this.props.showKey) {
 			return(
 <Panel style={{backgroundColor: "black"}}>

@@ -4,7 +4,6 @@ import './App.css';
 import Map from './components/View.js';
 import Input from './components/Input.js';
 import HotelList from './components/HotelList.js';
-import HotelInfo from './components/HotelInfo.js';
 import Details from './components/Details.js';
 import DistanceKey from './components/DistanceKey.js';
 import keys from './keys.js'
@@ -54,6 +53,74 @@ class App extends Component {
 		console.log(lo, la)
 		axios.get('/details',{ params: {longitude: lo, latitude: la}})
 				.then( (res) => {
+			var restObs = []
+			var resGeoObj= {
+				type: 'FeatureCollection',
+				features: restObs
+			}
+			const colors = this.state.ratingColors
+			var ratingCol=[]
+			for(let i=0; i < res.data.length; i++) {
+			
+					switch(res.data[i].rating) {
+						  case 1:  
+						    ratingCol[i] = colors[0]
+						    break;
+						  case 1.5:  
+						    ratingCol[i] = colors[1]
+						    break;
+						  case 2:  
+						    ratingCol[i] = colors[2]
+						    break;
+    						case 2.5:  
+						    ratingCol[i] = colors[3]
+						    break;
+    						case 3:  
+						    ratingCol[i] = colors[4]
+						    break;
+    						case 3.5:  
+						    ratingCol[i] = colors[5]
+						    break;
+    						case 4:  
+						    ratingCol[i] = colors[6]
+						    break;
+    						case 4.5:  
+						    ratingCol[i] = colors[7]
+						    break;
+    						case 5:  
+						    ratingCol[i] = colors[8]	
+						    break;					    
+						  	default:
+						  	ratingCol[i] = "cyan"
+						}
+					
+
+				restObs.push({
+				type: "Feature",
+				geometry: {type: "Point", coordinates: [res.data[i].coordinates.longitude, res.data[i].coordinates.latitude]},	
+				properties: {
+					ratingCol: ratingCol[i],
+				 	display_phone: res.data[i].display_phone,
+				 	distance: res.data[i].distance,
+				 	image_url: res.data[i].image_url,
+				 	location: res.data[i].location,
+				 	name: res.data[i].name,
+				 	phone: res.data[i].phone,
+				 	price:res.data[i].price,
+				 	rating:JSON.stringify(res.data[i].rating),
+				 	review_count: res.data[i].review_count,
+				 	type: res.data[i].categories[0].title
+				 }
+				}
+			)
+			restObs.sort((a,b) =>  (b.properties.rating > a.properties.rating) ? 1 : ((a.properties.rating > b.properties.rating) ? -1 : 0)); 		
+
+			}
+			this.setState({
+				resGeoObj: resGeoObj
+			})					
+
+
 					this.setState({details: res})
 				})	
 	}
@@ -72,7 +139,6 @@ class App extends Component {
 	});
 }
 	getSelectedChain(ct) {
-
 		axios.get('/hotels',{ params: {city: ct}
     	})
 		.then(val => {	
@@ -187,7 +253,7 @@ hoverOut() {
       	</div>
       	</div>
         	<div className="asider">
-        		<Details dtls={this.state.details} curHotel={this.state.curHotel}/>
+        		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
       	</div>
       	{shadeKey}
       </div>
