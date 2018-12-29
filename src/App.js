@@ -23,7 +23,8 @@ class App extends Component {
     		choices: choices,
     		zoom: 14,
     		ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"],
-    		showKey: true
+    		showKey: true,
+    		dotMode: "hotel"
   /*  		ratingColors: ["rgba(77,210,255,.8)", "rgba(81,254,250,.8)", "rgba(86,254,204,.8)", "rgba(90,254,160,.8)", "rgba(95,254,119,.8)", "rgba(119,254,100,.8)", "rgba(165,254,104,.8)", "rgba(207,254, 09,.8)", "rgba(248,254,114,.8)"]*/	
 		}
 		this.getMapAndIso = this.getMapAndIso.bind(this)
@@ -245,7 +246,7 @@ hoverOut() {
   	} else{ shadeKey = null}
     return (
       <div>
-        <Map ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
+        <Map resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
         <div className="input">     
         		<Input getMapAndIso={this.getMapAndIso}/>
         	<div className="asideCities">

@@ -50,7 +50,8 @@ export default class Input extends Component {
         >
         <div style={{color: 'white', display: 'flex',flexDirection: 'column'}}>
           <ControlLabel>Enter the name of a place or an address</ControlLabel>
-          <input           
+          <input
+            style={{color: 'black'}}           
             value={this.state.value}
             placeholder="Enter text"
             onChange={this.handleChange}

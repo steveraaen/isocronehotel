@@ -36,7 +36,9 @@ render() {
       offset={{
         'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
       }}>
-      <h3 style={{backgroundColor: this.props.hoverHotel.properties.ratingCol,  padding: "24px", margin: "-26px", borderWidth: "1px", borderRadius: "6px"}}>{this.props.hoverHotel.properties.name}</h3>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{fontSize: "18pt", fontWeight: "bold", backgroundColor: this.props.hoverHotel.properties.ratingCol,  padding: "24px", margin: "-26px", borderWidth: "1px", borderRadius: "6px"}}>{this.props.hoverHotel.properties.name}</div>
+      </div>
     </Popup>
       )} else {ppup = null}
 // ---------------- make isochromes  
@@ -51,8 +53,40 @@ return (<GeoJSONLayer
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 
 // ------------------ make hotel markers
-  if(this.props.hotelsGeoJSON) { 
+  if(this.props.hotelsGeoJSON && !this.props.resGeoObj) { 
 var points = this.props.hotelsGeoJSON.map(( pt, idx) => {
+return(
+    <GeoJSONLayer      
+        circleOnMouseEnter={() => this.handleHover(pt)}
+        circleOnMouseLeave={() => this.handleHoverOut()}
+      
+        key={idx}
+        data={pt}      
+        type='circle'
+        circlePaint={{
+          'circle-color': [ 
+          'match',
+          ['get', 'rating'],
+          ["1"], '#FFDA70',
+          ["1.5"], '#FF9878',
+          ["2"], '#FF80A3',
+          ["2.5"], '#FF89E5',
+          ["3"], '#DE91FF',
+          ["3.5"], '#AD99FF',
+          ["4"], '#A2BFFF',
+          ["4.5"], '#AAF0FF',
+          ["5"], '#B3FFE4',
+          /* other */ 'cyan' 
+          ],
+        'circle-radius': {stops: [[14, 10], [16, 8]]}
+        }}
+       
+
+      />
+)
+})
+} else if(this.props.resGeoObj) { 
+var points = this.props.resGeoObj.features.map(( pt, idx) => {
 return(
     <GeoJSONLayer      
         circleOnMouseEnter={() => this.handleHover(pt)}

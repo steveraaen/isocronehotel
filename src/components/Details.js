@@ -31,7 +31,7 @@ componentDidMount() {
 		if(this.props.curHotel) {
 				return (
 				<div style={{maxWidth: "30vw"}}>
-					<Jumbotron style={{paddingLeft: '3vw', backgroundColor: this.props.curHotel.properties.ratingCol}}>
+					<Jumbotron style={{paddingLeft: '3vw', backgroundColor: this.props.curHotel.properties.ratingCol, borderWidth: '1px',borderRadius: '12px' }}>
 						<h1>{this.props.curHotel.properties.name}</h1>
 						<h2>{this.props.curHotel.properties.location.address1}</h2>
 						<h3>Yelp Rating: {this.props.curHotel.properties.rating}</h3>

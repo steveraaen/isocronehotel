@@ -1,102 +1,104 @@
-SJPP,-1.234671,43.163698
-HNTT,-1.247431,43.123931
-ORIS,-1.239412,43.107899
-RONC,-1.320028,43.009974
-ESPI,-1.340835,42.984231
-ZUBI,-1.504521,42.931636
-LARR,-1.542041,42.90135
-PAMP,-1.641371,42.818669
-OBAN,-1.785684,42.679826
-PLAR,-1.811115,42.672902
-MANE,-1.862804,42.66892
-CIRA,-1.892254,42.675777
-VLTA,-1.992688,42.659122
-ESTL,-1.849374,42.56108
-AYEQ,-2.036185,42.659254
-VLDM,-2.104074,42.6289
-LARC,-2.193936,42.56857
-SNSL,-2.267132,42.553414
-TODR,-2.272272,42.552402
-VINA,-2.371973,42.51517
-LOGR,-2.388771,42.355849
-NAVA,-2.559372,42.430058
-NAJE,-2.734752,42.414613
-AZOF,-2.799935,42.424925
-CIRU,-2.894509,42.396197
-STDO,-2.952347,42.440854
-GRAN,-3.02725,42.450651
-REDC,-3.028053,42.450132
-VLDR,-3.100835,42.426353
-VMDR,-3.136877,42.427523
-BELO,-3.191024,42.421477
-TOSA,-3.242836,42.414293
-VBST,-3.261963,42.404605
-ESDC,-3.280981,42.404918
-VFMO,-3.22517,42.326757
-SJDO,-3.436417,42.375932
-AGES,-3.461485,42.357232
-ATAP,-3.506752,42.376871
-CARP,-3.594042,42.354034
-BURG,-3.703816,42.342298
-TARD,-3.81826,42.34918
-RDLC,-3.834089,42.34037
-HODC,-3.926247,42.338709
-HONT,-4.062521,42.357491
-CSJZ,-4.137685,42.288034
-ITDV,-4.257771,42.28804
-BODC,-4.346783,42.258611
-FROM,-4.406754,42.266492
-PODC,-4.44471,42.269243
-CACO,-4.599162,42.337008
-CADC,-4.804443,42.328756
-LEDI,-4.86431,42.35411
-TEDT,-4.89002,42.363758
-MORA,-4.926974,42.360677
-SNRC,-4.951749,42.363626
-SAHA,-5.035761,42.369588
-CDCO,-5.077733,42.385367
-CADH,-5.159461,42.434607
-MADM,-5.415352,42.500193
-PVIL,-5.457984,42.545145
-LEON,-5.570033,42.593593
-LAVI,,
-VILM,-5.726104,42.483719
-VILV,-5.728678,42.482954
-HORB,-5.883723,42.463532
-ASTO,-6.057887,42.456776
-VALD,-6.079659,42.461587
-MUDR,-6.076545,42.45915
-SDSO,-6.158947,42.455237
-SDSO,-6.15823,42.455228
-ELGA,-6.207026,42.462485
-RADC,-6.285432,42.481066
-FONC,-6.343347,42.491736
-FONC,-6.341705,42.491324
-ELAC,-6.478621,42.520911
-RDAM,-6.479751,42.521591
-MOLI,-6.518508,42.537461
-CACA,-6.729736,42.59832
-PIER,-6.749901,42.605894
-VIDB,-6.813896,42.611005
-TRAB,-6.88168,42.649675
-LPDV,-6.920075,42.659992
-AMBA,-6.927727,42.665713
-OCEB,,42.707826
-TRIA,-7.240044,42.755789
-CALV,-7.73046,42.77343
-SANM,-7.500133,42.274436
-SARR,-7.413456,42.777462
-BARB,-7.444417,42.768722
-PORT,-7.614916,42.808175
-GONZ,-7.695852,42.824976
-VNDN,-7.748379,42.843976
-EIRX,-8.29353,42.675447
-PADR,-7.869041,42.873121
-PCAM,-7.914689,42.878464
-CNOV,7.940719,42.870236
-MLDE,-8.017286,42.914714
-RIDB,-8.131433,42.930749
-ARZU,-8.162482,42.926326
-STIR,-8.335683,42.918344
-PMDG,-8.358568,42.907861
-STDC,-8.524605,42.885495
+var camTowns = [
+{cityCode: "SJPP", lng: -1.234671,lat: 43.163698},
+{cityCode: "HNTT", lng: -1.247431,lat: 43.123931},
+{cityCode: "ORIS", lng: -1.239412,lat: 43.107899},
+{cityCode: "RONC", lng: -1.320028,lat: 43.009974},
+{cityCode: "ESPI", lng: -1.340835,lat: 42.984231},
+{cityCode: "ZUBI", lng: -1.504521,lat: 42.931636},
+{cityCode: "LARR", lng: -1.542041,lat: 42.90135},
+{cityCode: "PAMP", lng: -1.641371,lat: 42.818669},
+{cityCode: "OBAN", lng: -1.785684,lat: 42.679826},
+{cityCode: "PLAR", lng: -1.811115,lat: 42.672902},
+{cityCode: "MANE", lng: -1.862804,lat: 42.66892},
+{cityCode: "CIRA", lng: -1.892254,lat: 42.675777},
+{cityCode: "VLTA", lng: -1.992688,lat: 42.659122},
+{cityCode: "ESTL", lng: -1.849374,lat: 42.56108},
+{cityCode: "AYEQ", lng: -2.036185,lat: 42.659254},
+{cityCode: "VLDM", lng: -2.104074,lat: 42.6289},
+{cityCode: "LARC", lng: -2.193936,lat: 42.56857},
+{cityCode: "SNSL", lng: -2.267132,lat: 42.553414},
+{cityCode: "TODR", lng: -2.272272,lat: 42.552402},
+{cityCode: "VINA", lng: -2.371973,lat: 42.51517},
+{cityCode: "LOGR", lng: -2.388771,lat: 42.355849},
+{cityCode: "NAVA", lng: -2.559372,lat: 42.430058},
+{cityCode: "NAJE", lng: -2.734752,lat: 42.414613},
+{cityCode: "AZOF", lng: -2.799935,lat: 42.424925},
+{cityCode: "CIRU", lng: -2.894509,lat: 42.396197},
+{cityCode: "STDO", lng: -2.952347,lat: 42.440854},
+{cityCode: "GRAN", lng: -3.02725,4lat: 2.450651},
+{cityCode: "REDC", lng: -3.028053,lat: 42.450132},
+{cityCode: "VLDR", lng: -3.100835,lat: 42.426353},
+{cityCode: "VMDR", lng: -3.136877,lat: 42.427523},
+{cityCode: "BELO", lng: -3.191024,lat: 42.421477},
+{cityCode: "TOSA", lng: -3.242836,lat: 42.414293},
+{cityCode: "VBST", lng: -3.261963,lat: 42.404605},
+{cityCode: "ESDC", lng: -3.280981,lat: 42.404918},
+{cityCode: "VFMO", lng: -3.22517,4lat: 2.326757},
+{cityCode: "SJDO", lng: -3.436417,lat: 42.375932},
+{cityCode: "AGES", lng: -3.461485,lat: 42.357232},
+{cityCode: "ATAP", lng: -3.506752,lat: 42.376871},
+{cityCode: "CARP", lng: -3.594042,lat: 42.354034},
+{cityCode: "BURG", lng: -3.703816,lat: 42.342298},
+{cityCode: "TARD", lng: -3.81826,4lat: 2.34918},
+{cityCode: "RDLC", lng: -3.834089,lat: 42.34037},
+{cityCode: "HODC", lng: -3.926247,lat: 42.338709},
+{cityCode: "HONT", lng: -4.062521,lat: 42.357491},
+{cityCode: "CSJZ", lng: -4.137685,lat: 42.288034},
+{cityCode: "ITDV", lng: -4.257771,lat: 42.28804},
+{cityCode: "BODC", lng: -4.346783,lat: 42.258611},
+{cityCode: "FROM", lng: -4.406754,lat: 42.266492},
+{cityCode: "PODC", lng: -4.44471,4lat: 2.269243},
+{cityCode: "CACO", lng: -4.599162,lat: 42.337008},
+{cityCode: "CADC", lng: -4.804443,lat: 42.328756},
+{cityCode: "LEDI", lng: -4.86431,4lat: 2.35411},
+{cityCode: "TEDT", lng: -4.89002,4lat: 2.363758},
+{cityCode: "MORA", lng: -4.926974,lat: 42.360677},
+{cityCode: "SNRC", lng: -4.951749,lat: 42.363626},
+{cityCode: "SAHA", lng: -5.035761,lat: 42.369588},
+{cityCode: "CDCO", lng: -5.077733,lat: 42.385367},
+{cityCode: "CADH", lng: -5.159461,lat: 42.434607},
+{cityCode: "MADM", lng: -5.415352,lat: 42.500193},
+{cityCode: "PVIL", lng: -5.457984,lat: 42.545145},
+{cityCode: "LEON", lng: -5.570033,lat: 42.593593},
+{cityCode: "VILM", lng: -5.726104,lat: 42.483719},
+{cityCode: "VILV", lng: -5.728678,lat: 42.482954},
+{cityCode: "HORB", lng: -5.883723,lat: 42.463532},
+{cityCode: "ASTO", lng: -6.057887,lat: 42.456776},
+{cityCode: "VALD", lng: -6.079659,lat: 42.461587},
+{cityCode: "MUDR", lng: -6.076545,lat: 42.45915},
+{cityCode: "SDSO", lng: -6.158947,lat: 42.455237},
+{cityCode: "SDSO", lng: -6.15823,4lat: 2.455228},
+{cityCode: "ELGA", lng: -6.207026,lat: 42.462485},
+{cityCode: "RADC", lng: -6.285432,lat: 42.481066},
+{cityCode: "FONC", lng: -6.343347,lat: 42.491736},
+{cityCode: "FONC", lng: -6.341705,lat: 42.491324},
+{cityCode: "ELAC", lng: -6.478621,lat: 42.520911},
+{cityCode: "RDAM", lng: -6.479751,lat: 42.521591},
+{cityCode: "MOLI", lng: -6.518508,lat: 42.537461},
+{cityCode: "CACA", lng: -6.729736,lat: 42.59832},
+{cityCode: "PIER", lng: -6.749901,lat: 42.605894},
+{cityCode: "VIDB", lng: -6.813896,lat: 42.611005},
+{cityCode: "TRAB", lng: -6.88168,4lat: 2.649675},
+{cityCode: "LPDV", lng: -6.920075,lat: 42.659992},
+{cityCode: "AMBA", lng: -6.927727,lat: 42.665713},
+{cityCode: "OCEB", lng: 42.707826,lat: 42.7078},
+{cityCode: "TRIA", lng: -7.240044,lat: 42.755789},
+{cityCode: "CALV", lng: -7.73046,4lat: 2.77343},
+{cityCode: "SANM", lng: -7.500133,lat: 42.274436},
+{cityCode: "SARR", lng: -7.413456,lat: 42.777462},
+{cityCode: "BARB", lng: -7.444417,lat: 42.768722},
+{cityCode: "PORT", lng: -7.614916,lat: 42.808175},
+{cityCode: "GONZ", lng: -7.695852,lat: 42.824976},
+{cityCode: "VNDN", lng: -7.748379,lat: 42.843976},
+{cityCode: "EIRX", lng: -8.29353,4lat: 2.675447},
+{cityCode: "PADR", lng: -7.869041,lat: 42.873121},
+{cityCode: "PCAM", lng: -7.914689,lat: 42.878464},
+{cityCode: "CNOV", lng: 7.940719,4lat: 2.870236},
+{cityCode: "MLDE", lng: -8.017286,lat: 42.914714},
+{cityCode: "RIDB", lng: -8.131433,lat: 42.930749},
+{cityCode: "ARZU", lng: -8.162482,lat: 42.926326},
+{cityCode: "STIR", lng: -8.335683,lat: 42.918344},
+{cityCode: "PMDG", lng: -8.358568,lat: 42.907861},
+{cityCode: "STDC", lng: -8.524605,lat: 42.885495}
+]
+module.exports = camTowns

@@ -23,7 +23,7 @@ MouseOver a circle marker to view the name of the hotel in a popup.<br>
 Click the hotel (on the list) to view the hotel details as well as a list of the nearest restaurants. 
 
 ### Restaurants
-
+When a hotel is clicked, the map will zoom on the hotel and replace the hotel markers with restaurant markers.
 ### Color Coding
 
 The list of hotels and restaurants is sorted by the overall Yelp rating, form best to worst.<br>

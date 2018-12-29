@@ -1,10 +1,10 @@
 var eucities = [
 	{
-		"city" : "Durres",
-		"country" : "Albania",
-		"cntrycode" : "AL",
-		"lng" : 19.4482,
-		"lat" : 41.3178
+		"city" : "Saint Jean Pied de Port",
+		"country" : "France",
+		"cntrycode" : "FR",
+		"lng" : -1.234671,
+		"lat" : 43.163698
 	},
 	{
 		"city" : "Elbasan",
@@ -845,41 +845,6 @@ var eucities = [
 		"cntrycode" : "FR",
 		"lng" : 2.1333,
 		"lat" : 48.8005
-	},
-	{
-		"city" : "Batumi",
-		"country" : "Georgia",
-		"cntrycode" : "GE",
-		"lng" : 41.6300,
-		"lat" : 41.6000
-	},
-	{
-		"city" : "Kutaisi",
-		"country" : "Georgia",
-		"cntrycode" : "GE",
-		"lng" : 42.7300,
-		"lat" : 42.2500
-	},
-	{
-		"city" : "Rustavi",
-		"country" : "Georgia",
-		"cntrycode" : "GE",
-		"lng" : 45.0500,
-		"lat" : 41.5704
-	},
-	{
-		"city" : "Sukhumi",
-		"country" : "Georgia",
-		"cntrycode" : "GE",
-		"lng" : 41.0200,
-		"lat" : 43.0200
-	},
-	{
-		"city" : "Tbilisi",
-		"country" : "Georgia",
-		"cntrycode" : "GE",
-		"lng" : 44.7908,
-		"lat" : 41.7250
 	},
 	{
 		"city" : "Agrinio",
