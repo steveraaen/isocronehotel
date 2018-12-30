@@ -18,7 +18,7 @@ constructor(props) {
 }
 
 handleHover(b) {
-  console.log(b)
+ 
   this.props.hover(b)
   
 }
@@ -86,7 +86,7 @@ return(
 )
 })
 } else if(this.props.resGeoObj) { 
-var points = this.props.resGeoObj.features.map(( pt, idx) => {
+   points = this.props.resGeoObj.features.map(( pt, idx) => {
 return(
     <GeoJSONLayer      
         circleOnMouseEnter={() => this.handleHover(pt)}

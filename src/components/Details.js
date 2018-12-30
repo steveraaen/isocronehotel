@@ -9,7 +9,7 @@ componentDidMount() {
 }
 
 	render() {
-
+	
 		if(this.props.dtls && this.props.resGeoObj) {
 			console.log(this.props.resGeoObj.features)
 			var deets = this.props.resGeoObj.features.map((place, idx) => {

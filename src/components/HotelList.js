@@ -21,7 +21,6 @@ export default class HotelList extends Component {
 	}
 
 	render() {
-		
 		if(this.props.hotelsGeoJSON) {
 		var hotels = this.props.hotelsGeoJSON.map((nm, idx) => {
 

@@ -23,7 +23,8 @@ class App extends Component {
     		choices: choices,
     		zoom: 14,
     		ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"],
-    		showKey: true,
+/*    		ratingColors: ["#1DBD00","#54C507","#8ACD0","#C1D518","#DEC321","#E69E2B","#EE7936","#F65741","#FF4D63"],
+*/    		showKey: true,
     		dotMode: "hotel"
   /*  		ratingColors: ["rgba(77,210,255,.8)", "rgba(81,254,250,.8)", "rgba(86,254,204,.8)", "rgba(90,254,160,.8)", "rgba(95,254,119,.8)", "rgba(119,254,100,.8)", "rgba(165,254,104,.8)", "rgba(207,254, 09,.8)", "rgba(248,254,114,.8)"]*/	
 		}
@@ -36,9 +37,6 @@ class App extends Component {
 		 this.hoverOut = this.hoverOut.bind(this)
 		 this.toggleKey = this.toggleKey.bind(this)
 	}
-
-	
-
 	zoom() {
 		this.setState({zoom: 16})
 	}
@@ -94,8 +92,6 @@ class App extends Component {
 						  	default:
 						  	ratingCol[i] = "cyan"
 						}
-					
-
 				restObs.push({
 				type: "Feature",
 				geometry: {type: "Point", coordinates: [res.data[i].coordinates.longitude, res.data[i].coordinates.latitude]},	
@@ -120,13 +116,11 @@ class App extends Component {
 			this.setState({
 				resGeoObj: resGeoObj
 			})					
-
-
 					this.setState({details: res})
 				})	
 	}
 	getIso(lo, la, nm) {
-		var urlb = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + lo + ',' + la + '?contours_minutes=5,10,15&contours_colors=041d9a,04e813,4286f4&polygons=true&access_token=' + keys.mbk
+		var urlb = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + lo + ',' + la + '?contours_minutes=15,30,60&contours_colors=041d9a,04e813,4286f4&polygons=true&access_token=' + keys.mbk
 			axios.get(urlb)
 			  .then( (resp) =>{					  
 			  	this.setState({
@@ -143,7 +137,6 @@ class App extends Component {
 		axios.get('/hotels',{ params: {city: ct}
     	})
 		.then(val => {	
-
 			var hotObs = []
 			var geoObj= {
 				type: 'FeatureCollection',
@@ -151,8 +144,7 @@ class App extends Component {
 			}
 			const colors = this.state.ratingColors
 			var ratingCol=[]
-			for(let i=0; i < val.data.length; i++) {
-			
+			for(let i=0; i < val.data.length; i++) {			
 					switch(val.data[i].rating) {
 						  case 1:  
 						    ratingCol[i] = colors[0]
@@ -184,8 +176,6 @@ class App extends Component {
 						  	default:
 						  	ratingCol[i] = "cyan"
 						}
-					
-
 				hotObs.push({
 				type: "Feature",
 				geometry: {type: "Point", coordinates: [val.data[i].coordinates.longitude, val.data[i].coordinates.latitude]},	
@@ -217,8 +207,6 @@ class App extends Component {
 			})
 		})	
 	}
-
-
 hover(b) {
   this.setState({
     hoverHotel: b
@@ -239,6 +227,7 @@ hoverOut() {
 		})
 	}
   render() {
+
   	if(this.state.showKey) {
   		var shadeKey = (<div className="key">
         		<DistanceKey showKey={this.state.showKey} toggleKey={this.toggleKey}/>
