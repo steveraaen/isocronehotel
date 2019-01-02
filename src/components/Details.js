@@ -14,7 +14,7 @@ componentDidMount() {
 			console.log(this.props.resGeoObj.features)
 			var deets = this.props.resGeoObj.features.map((place, idx) => {
 				return(
-					<tr key={idx} style={{backgroundColor: place.properties.ratingCol}}>
+					<tr key={idx} style={{color: 'white', backgroundColor: place.properties.ratingCol}}>
 						<td>{Math.floor(place.properties.distance)}</td>
 						<td>{place.properties.rating}</td>
 						<td>{place.properties.name}</td>
@@ -31,7 +31,7 @@ componentDidMount() {
 		if(this.props.curHotel) {
 				return (
 				<div style={{maxWidth: "30vw"}}>
-					<Jumbotron style={{paddingLeft: '3vw', backgroundColor: this.props.curHotel.properties.ratingCol, borderWidth: '1px',borderRadius: '12px' }}>
+					<Jumbotron style={{paddingLeft: '3vw', color: 'white', backgroundColor: this.props.curHotel.properties.ratingCol, borderWidth: '1px',borderRadius: '12px' }}>
 						<h1>{this.props.curHotel.properties.name}</h1>
 						<h2>{this.props.curHotel.properties.location.address1}</h2>
 						<h3>Yelp Rating: {this.props.curHotel.properties.rating}</h3>
@@ -39,6 +39,9 @@ componentDidMount() {
 					</Jumbotron>
 						
 						<div className="details">
+						<h2>
+						Nearby Restaurants
+						</h2>
 						<Table style={{maxWidth: "30vw"}}>
 						
 						<thead>	

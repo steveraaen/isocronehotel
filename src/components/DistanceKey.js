@@ -11,7 +11,7 @@ export default class DistanceKey extends Component {
 		if(this.props.showKey) {
 			return(
 
-				<Collapsible trigger="Walking Range" triggerStyle={{backgroundColor: 'black', textAlign: 'center', fontSize: '20pt', fontWeight: 'bold',color: "yellow", paddingBottom: "1vh"}}>				
+				<Collapsible trigger="Walking Range" triggerStyle={{backgroundColor: 'black', textAlign: 'center', fontSize: '20pt', fontWeight: 'bold',color: "yellow", padding: "5px"}}>				
 					<div style={{textAlign: 'center', fontSize: '24pt', fontWeight: 'bold', color: "white",  marginTop: ".8vh", backgroundColor: "rgba(255,255,255,.6)", marginBottom: ".33vh"}}>5 minutes</div>
 					<div style={{textAlign: 'center', fontSize: '24pt', fontWeight: 'bold', color: "white", backgroundColor: "rgba(255,255,255,.48)", marginBottom: ".33vh"}}>10 minutes</div>
 					<div style={{textAlign: 'center', fontSize: '24pt', fontWeight: 'bold', color: "white", backgroundColor: "rgba(255,255,255,.36)", marginBottom: ".33vh"}}>15 minutes</div>

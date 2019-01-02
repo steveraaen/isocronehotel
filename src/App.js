@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,  Suspense, lazy } from 'react';
 import axios from 'axios'
 import './App.css';
 import Map from './components/View.js';
@@ -22,10 +22,13 @@ class App extends Component {
     		location: choices.cities[0].location,
     		choices: choices,
     		zoom: 14,
-    		ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"],
+    		ratingColors: ["#2C8208","#098926","#0A906E","#0B7298","#0D2B9F","#3E0EA6","#9310AE","#B5127B","#BD1428"].reverse(),
+    		/*ratingColors: ["#2C8208","#098926","#0A906E","#0B7298","#0D2B9F","#3E0EA6","#9310AE","#B5127B","#BD1428"],*/
+    	/*	ratingColors: ["#FFDA70","#FF9878","#FF80A3","#FF89E5","#DE91FF","#AD99FF","#A2BFFF","#AAF0FF","#B3FFE4"],*/
 /*    		ratingColors: ["#1DBD00","#54C507","#8ACD0","#C1D518","#DEC321","#E69E2B","#EE7936","#F65741","#FF4D63"],
 */    		showKey: true,
-    		dotMode: "hotel"
+    		dotMode: "hotel",
+    		circleRadius: 10
   /*  		ratingColors: ["rgba(77,210,255,.8)", "rgba(81,254,250,.8)", "rgba(86,254,204,.8)", "rgba(90,254,160,.8)", "rgba(95,254,119,.8)", "rgba(119,254,100,.8)", "rgba(165,254,104,.8)", "rgba(207,254, 09,.8)", "rgba(248,254,114,.8)"]*/	
 		}
 		this.getMapAndIso = this.getMapAndIso.bind(this)
@@ -36,6 +39,7 @@ class App extends Component {
 		 this.hover = this.hover.bind(this)
 		 this.hoverOut = this.hoverOut.bind(this)
 		 this.toggleKey = this.toggleKey.bind(this)
+		 this.focusCircle = this.focusCircle.bind(this)
 	}
 	zoom() {
 		this.setState({zoom: 16})
@@ -120,7 +124,7 @@ class App extends Component {
 				})	
 	}
 	getIso(lo, la, nm) {
-		var urlb = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + lo + ',' + la + '?contours_minutes=15,30,60&contours_colors=041d9a,04e813,4286f4&polygons=true&access_token=' + keys.mbk
+		var urlb = 'https://api.mapbox.com/isochrone/v1/mapbox/walking/' + lo + ',' + la + '?contours_minutes=5,15,30&contours_colors=041d9a,04e813,4286f4&polygons=true&access_token=' + keys.mbk
 			axios.get(urlb)
 			  .then( (resp) =>{					  
 			  	this.setState({
@@ -188,7 +192,8 @@ class App extends Component {
 				 	phone: val.data[i].phone,
 				 	price:val.data[i].price,
 				 	rating:JSON.stringify(val.data[i].rating),
-				 	review_count: val.data[i].review_count
+				 	review_count: val.data[i].review_count,
+				 	cRad: 10
 				 }
 				}
 			)
@@ -226,6 +231,10 @@ hoverOut() {
 			showKey: !this.state.showKey
 		})
 	}
+	focusCircle(nm) {
+
+		this.setState({curHotel: nm})
+	}
   render() {
 
   	if(this.state.showKey) {
@@ -235,17 +244,22 @@ hoverOut() {
   	} else{ shadeKey = null}
     return (
       <div>
-        <Map resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
+        <Map circleRadius={this.state.circleRadius} resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
         <div className="input">     
         		<Input getMapAndIso={this.getMapAndIso}/>
         	<div className="asideCities">
-        		<HotelList ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
+        		<HotelList focusCircle={this.focusCircle} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
+      	</div>
+         	<div className="aside">
+      	{shadeKey}
       	</div>
       	</div>
         	<div className="asider">
         		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
       	</div>
-      	{shadeKey}
+      	<div className="bannnerTop">
+      	{this.state.city[0]}
+      	</div>
       </div>
     );
   }

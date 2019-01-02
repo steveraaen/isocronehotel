@@ -16,7 +16,16 @@ constructor(props) {
   }
   this.handleHover = this.handleHover.bind(this)
 }
-
+componentDidMount() {
+  if(this.props.curHotel) {
+    var isCH = this.props.hotelsGeoJSON.filter((htl, idx) => {
+      if(htl.properties.name === this.props.curHotel.properties.name) {
+        return htl.properties.cr = 24 
+      } 
+    })
+    console.log(isCH)
+  }
+}
 handleHover(b) {
  
   this.props.hover(b)
@@ -27,6 +36,7 @@ handleHoverOut() {
   
 }
 render() {
+  var points
   if(this.props.hoverHotel) {
     var dynColor = this.props.hoverHotel.properties.ratingCol
     var ppup = (
@@ -45,21 +55,23 @@ render() {
 if(this.props.isoList) {
   var isos = this.props.isoList.map((iso, idx) => {
 return (<GeoJSONLayer 
-
+          id={JSON.stringify("iso" +idx)}
+         
           key={idx} 
           data={iso}   
-          fillPaint={{ "fill-color": "white", "fill-opacity": .20}}/>)
+          fillPaint={{ "fill-color": "black", "fill-opacity": .24}}/>)
   })
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 
 // ------------------ make hotel markers
+
   if(this.props.hotelsGeoJSON && !this.props.resGeoObj) { 
-var points = this.props.hotelsGeoJSON.map(( pt, idx) => {
-return(
-    <GeoJSONLayer      
+  points = this.props.hotelsGeoJSON.map(( pt, idx) => {
+  return(
+      <GeoJSONLayer      
         circleOnMouseEnter={() => this.handleHover(pt)}
-        circleOnMouseLeave={() => this.handleHoverOut()}
-      
+        circleOnMouseLeave={() => this.handleHoverOut()}  
+         id={JSON.stringify("circ"+idx)}    
         key={idx}
         data={pt}      
         type='circle'
@@ -67,23 +79,20 @@ return(
           'circle-color': [ 
           'match',
           ['get', 'rating'],
-          ["1"], '#FFDA70',
-          ["1.5"], '#FF9878',
-          ["2"], '#FF80A3',
-          ["2.5"], '#FF89E5',
-          ["3"], '#DE91FF',
-          ["3.5"], '#AD99FF',
-          ["4"], '#A2BFFF',
-          ["4.5"], '#AAF0FF',
-          ["5"], '#B3FFE4',
+          ["1"], this.props.ratingColors[0],
+          ["1.5"], this.props.ratingColors[1],
+          ["2"], this.props.ratingColors[2],
+          ["2.5"], this.props.ratingColors[3],
+          ["3"], this.props.ratingColors[4],
+          ["3.5"], this.props.ratingColors[5],
+          ["4"], this.props.ratingColors[6],
+          ["4.5"], this.props.ratingColors[7],
+          ["5"], this.props.ratingColors[8],
           /* other */ 'cyan' 
           ],
-        'circle-radius': {stops: [[14, 10], [16, 8]]}
+        'circle-radius': {stops: [[14, this.props.circleRadius], [16, 8]]}
         }}
-       
-
-      />
-)
+      />)
 })
 } else if(this.props.resGeoObj) { 
    points = this.props.resGeoObj.features.map(( pt, idx) => {
@@ -110,7 +119,7 @@ return(
           ["5"], '#B3FFE4',
           /* other */ 'cyan' 
           ],
-        'circle-radius': {stops: [[14, 10], [16, 8]]}
+        'circle-radius': {stops: [[14, this.props.circleRadius], [16, 8]]}
         }}
        
 

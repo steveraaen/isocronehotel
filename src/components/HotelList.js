@@ -19,19 +19,22 @@ export default class HotelList extends Component {
 		this.props.zoom()
 		console.log(nm)
 	}
-
+	handleMouseOver(nm) {
+		console.log(nm)
+		this.props.focusCircle(nm)
+	}
 	render() {
 		if(this.props.hotelsGeoJSON) {
 		var hotels = this.props.hotelsGeoJSON.map((nm, idx) => {
 
-			return(<button style={{ backgroundColor: nm.properties.ratingCol, fontSize: "16pt", overflow: 'ellipsis'}} key={idx} onClick={() => this.handleHotelClick(nm.geometry.coordinates[0], nm.geometry.coordinates[1], nm)}>{nm.properties.name}</button>)
+			return(<button style={{color: 'white', backgroundColor: nm.properties.ratingCol, fontSize: "16pt", overflow: 'ellipsis'}} key={idx} onMouseOver={() => this.handleMouseOver(nm)} onClick={() => this.handleHotelClick(nm.geometry.coordinates[0], nm.geometry.coordinates[1], nm)}>{nm.properties.name}</button>)
 		})
 	} else { 
 		 hotels = (<div>Nothing to show</div>) 
 		return  hotels 
 	}
 		return (		
-      <Collapsible triggerStyle={{color: "yellow", backgroundColor: 'black', alignItems: 'center', fontSize: "20pt", fontWeight: 'bold'}} trigger={"Hotels in " + this.props.city  } >
+      <Collapsible triggerStyle={{color: "yellow", padding: "5px", backgroundColor: 'black', alignItems: 'center', fontSize: "20pt", fontWeight: 'bold'}} trigger={"Hotels in " + this.props.city  } >
       <div style={{padding: '1vh', display: 'flex', flexDirection: 'column'}}>
   			{hotels}
   		</div>

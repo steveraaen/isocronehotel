@@ -34,7 +34,7 @@ button {
 	justify-content: space-around;
 }
 .details {
-	height: 26vh;
+	max-height: 40vh;
 	overflow: scroll;
 }
 tbody {
