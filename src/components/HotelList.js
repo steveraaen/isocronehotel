@@ -19,9 +19,8 @@ export default class HotelList extends Component {
 		this.props.zoom()
 		console.log(nm)
 	}
-	handleMouseOver(nm) {
-		console.log(nm)
-		this.props.focusCircle(nm)
+	handleMouseOver(n) {
+		this.props.expandCircle(n)
 	}
 	render() {
 		if(this.props.hotelsGeoJSON) {

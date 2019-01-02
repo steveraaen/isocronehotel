@@ -39,7 +39,7 @@ class App extends Component {
 		 this.hover = this.hover.bind(this)
 		 this.hoverOut = this.hoverOut.bind(this)
 		 this.toggleKey = this.toggleKey.bind(this)
-		 this.focusCircle = this.focusCircle.bind(this)
+		 this.expandCircle = this.expandCircle.bind(this)
 	}
 	zoom() {
 		this.setState({zoom: 16})
@@ -231,10 +231,11 @@ hoverOut() {
 			showKey: !this.state.showKey
 		})
 	}
-	focusCircle(nm) {
-
-		this.setState({curHotel: nm})
-	}
+expandCircle(nm) {
+	this.setState({
+		curHotel: nm
+	})
+}
   render() {
 
   	if(this.state.showKey) {
@@ -244,11 +245,11 @@ hoverOut() {
   	} else{ shadeKey = null}
     return (
       <div>
-        <Map circleRadius={this.state.circleRadius} resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
+        <Map curHotel={this.state.curHotel} resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
         <div className="input">     
         		<Input getMapAndIso={this.getMapAndIso}/>
         	<div className="asideCities">
-        		<HotelList focusCircle={this.focusCircle} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
+        		<HotelList expandCircle={this.expandCircle} curHotel={this.state.curHotel} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
       	</div>
          	<div className="aside">
       	{shadeKey}

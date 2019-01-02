@@ -16,18 +16,9 @@ constructor(props) {
   }
   this.handleHover = this.handleHover.bind(this)
 }
-componentDidMount() {
-  if(this.props.curHotel) {
-    var isCH = this.props.hotelsGeoJSON.filter((htl, idx) => {
-      if(htl.properties.name === this.props.curHotel.properties.name) {
-        return htl.properties.cr = 24 
-      } 
-    })
-    console.log(isCH)
-  }
-}
+
 handleHover(b) {
- 
+ console.log(b)
   this.props.hover(b)
   
 }
@@ -47,7 +38,7 @@ render() {
         'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
       }}>
       <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div style={{fontSize: "18pt", fontWeight: "bold", backgroundColor: this.props.hoverHotel.properties.ratingCol,  padding: "24px", margin: "-26px", borderWidth: "1px", borderRadius: "6px"}}>{this.props.hoverHotel.properties.name}</div>
+        <div style={{fontSize: "18pt", fontWeight: "bold", color: "white",backgroundColor: this.props.hoverHotel.properties.ratingCol,  padding: "24px", margin: "-26px", borderWidth: "1px", borderRadius: "6px"}}>{this.props.hoverHotel.properties.name}</div>
       </div>
     </Popup>
       )} else {ppup = null}
@@ -64,6 +55,19 @@ return (<GeoJSONLayer
 } else { return  (<div>+++++++++++++++++++++++++++</div>)}
 
 // ------------------ make hotel markers
+  if(this.props.curHotel) {
+    console.log(this.props.curHotel)
+    var ch = (
+      <GeoJSONLayer
+      data={this.props.curHotel}
+      type='circle' 
+      circlePaint={{
+        'circle-color': 'yellow',
+        'circle-radius': {stops: [[14, 30], [16, 8]]}
+      }}
+      />
+      )
+  }
 
   if(this.props.hotelsGeoJSON && !this.props.resGeoObj) { 
   points = this.props.hotelsGeoJSON.map(( pt, idx) => {
@@ -90,7 +94,7 @@ return (<GeoJSONLayer
           ["5"], this.props.ratingColors[8],
           /* other */ 'cyan' 
           ],
-        'circle-radius': {stops: [[14, this.props.circleRadius], [16, 8]]}
+        'circle-radius': {stops: [[14, pt.properties.cRad], [16, 8]]}
         }}
       />)
 })
@@ -119,7 +123,7 @@ return(
           ["5"], '#B3FFE4',
           /* other */ 'cyan' 
           ],
-        'circle-radius': {stops: [[14, this.props.circleRadius], [16, 8]]}
+        'circle-radius': {stops: [[14, 10], [16, 8]]}
         }}
        
 
@@ -143,6 +147,7 @@ return(
   <div>{points}</div>
   <div>{isos}</div>
   <div>{ppup}</div>
+  <div>{ch}</div>
 
 </Map>
 
