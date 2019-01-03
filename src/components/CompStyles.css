@@ -1,25 +1,29 @@
 button {
 	font-size: 14pt;
 	font-weight: bold;
-	border-radius: 6px;
+	border-width: 4px;
+	border-color: 6px;
+	border-radius: 12px;
 	margin-bottom: .5vh;
 	 text-overflow: ellipsis;
+
 }
 .mapboxgl-popup-content {
 	background-color:  var(--dynColor);
+
 }
 .buttonText {
 	font-size: 24pt;
 }
-.currentHotel {
 
-}
 .input {
 	left: 5vw;
 	max-width: 28vw;
 	top: 6vh;
 	position: absolute;
-
+}
+.ratingKey {
+	background: linear-gradient(red 0%, orange 25%, yellow 50%, green 75%, blue 100%);
 }
 .card {
 	background-color: white;

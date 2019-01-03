@@ -12,9 +12,8 @@
 
   flex: 1;
   flex-direction: column;
-
   position: relative;
-  max-width: 20vw;
+  max-width: 24vw;
   height: 24vh;
   
 }
@@ -40,7 +39,7 @@
   flex-direction: column;
   align-items: center;
   max-height: 60vh;
-  max-width: 20vw;
+  max-width: 22vw;
   text-overflow: ellipsis;
   overflow: scroll;
   margin-bottom: 2vh;

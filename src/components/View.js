@@ -63,7 +63,7 @@ return (<GeoJSONLayer
       type='circle' 
       circlePaint={{
         'circle-color': 'yellow',
-        'circle-radius': {stops: [[14, 30], [16, 8]]}
+        'circle-radius': {stops: [[14, 20], [16, 8]]}
       }}
       />
       )
@@ -112,15 +112,15 @@ return(
           'circle-color': [ 
           'match',
           ['get', 'rating'],
-          ["1"], '#FFDA70',
-          ["1.5"], '#FF9878',
-          ["2"], '#FF80A3',
-          ["2.5"], '#FF89E5',
-          ["3"], '#DE91FF',
-          ["3.5"], '#AD99FF',
-          ["4"], '#A2BFFF',
-          ["4.5"], '#AAF0FF',
-          ["5"], '#B3FFE4',
+          ["1"], this.props.ratingColors[0],
+          ["1.5"], this.props.ratingColors[1],
+          ["2"], this.props.ratingColors[2],
+          ["2.5"], this.props.ratingColors[3],
+          ["3"], this.props.ratingColors[4],
+          ["3.5"], this.props.ratingColors[5],
+          ["4"], this.props.ratingColors[6],
+          ["4.5"], this.props.ratingColors[7],
+          ["5"], this.props.ratingColors[8],
           /* other */ 'cyan' 
           ],
         'circle-radius': {stops: [[14, 10], [16, 8]]}

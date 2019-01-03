@@ -6,6 +6,7 @@ import Input from './components/Input.js';
 import HotelList from './components/HotelList.js';
 import Details from './components/Details.js';
 import DistanceKey from './components/DistanceKey.js';
+import RatingKey from './components/RatingKey.js';
 import keys from './keys.js'
 import choices from './selections.js'
 import europe from './europe.js'
@@ -110,7 +111,10 @@ class App extends Component {
 				 	price:res.data[i].price,
 				 	rating:JSON.stringify(res.data[i].rating),
 				 	review_count: res.data[i].review_count,
-				 	type: res.data[i].categories[0].title
+				 	type: res.data[i].categories[0].title,
+				 	opacity: 1,
+				 	borderColor: "white",
+				 	color: 'white'
 				 }
 				}
 			)
@@ -193,7 +197,10 @@ class App extends Component {
 				 	price:val.data[i].price,
 				 	rating:JSON.stringify(val.data[i].rating),
 				 	review_count: val.data[i].review_count,
-				 	cRad: 10
+				 	cRad: 10,
+				 	opacity: 1,
+				 	borderColor: "white",
+				 	color: 'white'
 				 }
 				}
 			)
@@ -223,8 +230,10 @@ hoverOut() {
   })  
 }
 	componentDidMount() {
-		this.getMapAndIso(this.state.city, this.state.location)
-		this.getSelectedChain(this.state.city)
+		this.getMapAndIso(this.state.city, this.state.location, function() {
+			this.getSelectedChain(this.state.city)
+		})
+		
 	}
 	toggleKey() {
 		this.setState({
@@ -254,6 +263,7 @@ expandCircle(nm) {
          	<div className="aside">
       	{shadeKey}
       	</div>
+      	<RatingKey />
       	</div>
         	<div className="asider">
         		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
