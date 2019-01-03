@@ -43,17 +43,17 @@ let url = `http://autocomplete.geocoder.api.here.com/6.2/suggest.json
 	render() {
 		if(this.state.cmap) {
 		var matches = this.state.cmap.map((lne, idx) => {
-			return(<div key={idx} style={{flexDirection: 'column'}}><button style={{minWidth: '20vw'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
+			return(<div key={idx} style={{flexDirection: 'column'}}><button style={{minWidth: '22vw'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
 		})
 		}
 		return (
-			<Well style={{backgroundColor: 'gray'}}>
+			<Well style={{backgroundColor: "#0D2B9F"}}>
       <form>
         <FormGroup
           controlId="formBasicText"
         >
-        <div style={{color: 'white', display: 'flex',flexDirection: 'column'}}>
-          <ControlLabel>Enter the name of a place or an address</ControlLabel>
+        <div style={{backgroundColor: "#0D2B9F",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "18pt"}}>
+          <ControlLabel>Enter the name of a city</ControlLabel>
           <input
             style={{color: 'black'}}           
             value={this.state.value}
@@ -61,7 +61,7 @@ let url = `http://autocomplete.geocoder.api.here.com/6.2/suggest.json
             onChange={this.handleChange}
           />
          </div>
-         <ul style={{maxHeight: '38vh', overflow: 'auto', listStyleType:"none", flexDirection: 'column', flexWrap: 'wrap'}}>{matches}</ul>
+         <div style={{maxHeight: '38vh', overflow: 'auto', listStyleType:"none", flexDirection: 'column', flexWrap: 'wrap'}}>{matches}</div>
      
         </FormGroup>
       </form>

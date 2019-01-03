@@ -248,7 +248,7 @@ expandCircle(nm) {
   render() {
 
   	if(this.state.showKey) {
-  		var shadeKey = (<div className="key">
+  		var shadeKey = (<div >
         		<DistanceKey showKey={this.state.showKey} toggleKey={this.toggleKey}/>
       	</div>)
   	} else{ shadeKey = null}
@@ -262,8 +262,11 @@ expandCircle(nm) {
       	</div>
          	<div className="aside">
       	{shadeKey}
+      	<RatingKey ratingColors={this.state.ratingColors} />
       	</div>
-      	<RatingKey />
+      
+      		
+     
       	</div>
         	<div className="asider">
         		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>

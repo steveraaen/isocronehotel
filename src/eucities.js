@@ -2544,8 +2544,8 @@ var eucities = [
 		"city" : "Bath",
 		"country" : "United Kingdom",
 		"cntrycode" : "GB",
-		"lng" : -2.3500,
-		"lat" : 51.3837
+		"lng" : -2.355069,
+		"lat" : 51.376737
 	},
 	{
 		"city" : "Belfast",

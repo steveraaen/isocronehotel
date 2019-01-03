@@ -17,7 +17,7 @@ componentDidMount() {
 					<tr key={idx} onMouseEnter={() => console.log(place)} style={{color: 'white', backgroundColor: place.properties.ratingCol}}>
 						<td>{Math.floor(place.properties.distance)}</td>
 						<td>{place.properties.rating}</td>
-						<td>{place.properties.name}</td>
+						<td style={{textOverflow: 'ellipsis'}}>{place.properties.name}</td>
 						<td>{place.properties.type}</td>
 						<td>{place.properties.review_count}</td>
 						<td>{place.properties.price}</td>

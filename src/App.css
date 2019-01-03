@@ -44,20 +44,6 @@
   overflow: scroll;
   margin-bottom: 2vh;
 }
-
-.asideHotels {
-
-  left: 5vw;
-  top: 60vh;
-  position: absolute;
-  width: 18vw;
-  height: 24vh;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: scroll;
-}
 .asider {
   background-color: white;
   right: 2vw;
