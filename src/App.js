@@ -7,6 +7,7 @@ import HotelList from './components/HotelList.js';
 import Details from './components/Details.js';
 import DistanceKey from './components/DistanceKey.js';
 import RatingKey from './components/RatingKey.js';
+import RestaurantStats from './components/RestaurantStats.js';
 import keys from './keys.js'
 import choices from './selections.js'
 import europe from './europe.js'
@@ -123,6 +124,41 @@ class App extends Component {
 			}
 			this.setState({
 				resGeoObj: resGeoObj
+			}, () => {
+		if(this.state.resGeoObj) {
+    		var totRtng = 0;
+    		var totRvws = 0;
+    		var totCvtPx = 0;
+    		var arr = this.state.resGeoObj.features
+    			for(let i = 0; i < arr.length; i++) {
+    				totRtng = totRtng + parseFloat(arr[i].properties.rating)
+    				totRvws = totRvws + arr[i].properties.review_count
+    				switch(arr[i].properties.price) {
+    					case "€":
+    					arr[i].properties.cvtPx = 1
+    					break;
+    					case "€€":
+    					arr[i].properties.cvtPx = 2
+    					break;
+    					case "€€€":
+    					arr[i].properties.cvtPx = 3
+    					break;
+    					default:
+    					arr[i].properties.cvtPx = 0
+    				}
+    				totCvtPx = totCvtPx + arr[i].properties.cvtPx
+    			}
+  var rtngScore = (totRtng/arr.length)
+  var rvwsScore = (totRvws/arr.length)
+  var pxScore = (totCvtPx/arr.length)
+ 	
+    	}
+    	this.setState({
+    		rtngScore: rtngScore,
+    		rvwsScore: rvwsScore,
+    		pxScore: pxScore
+
+    	})
 			})					
 					this.setState({details: res})
 				})	
@@ -263,17 +299,17 @@ expandCircle(nm) {
          	<div className="aside">
       	{shadeKey}
       	<RatingKey ratingColors={this.state.ratingColors} />
-      	</div>
-      
-      		
-     
-      	</div>
+      	</div> 
+     	</div>
         	<div className="asider">
-        		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
+        		<Details  resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
+      	   <RestaurantStats pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore}/> 
+ 
       	</div>
       	<div className="bannnerTop">
       	{this.state.city[0]}
       	</div>
+
       </div>
     );
   }
