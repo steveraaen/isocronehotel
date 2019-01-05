@@ -5,9 +5,10 @@ import Map from './components/View.js';
 import Input from './components/Input.js';
 import HotelList from './components/HotelList.js';
 import Details from './components/Details.js';
+/*import RestaurantTable from './components/RestaurantTable.js';*/
+import RestaurantStats from './components/RestaurantStats.js';
 import DistanceKey from './components/DistanceKey.js';
 import RatingKey from './components/RatingKey.js';
-import RestaurantStats from './components/RestaurantStats.js';
 import keys from './keys.js'
 import choices from './selections.js'
 import europe from './europe.js'
@@ -302,13 +303,11 @@ expandCircle(nm) {
       	</div> 
      	</div>
         	<div className="asider">
-        		<Details  resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
-      	   <RestaurantStats pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore}/> 
+        		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
+      	   <RestaurantStats pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
  
       	</div>
-      	<div className="bannnerTop">
-      	{this.state.city[0]}
-      	</div>
+
 
       </div>
     );

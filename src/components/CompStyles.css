@@ -8,6 +8,13 @@ button {
 	 text-overflow: ellipsis;
 
 }
+.statbox {
+	 width: 24vw;
+	 opacity: .8;
+	 border-width: 4px;
+	 border-color: white;
+	 border-radius: 10px;
+}
 .mapboxgl-popup-content {
 	background-color:  var(--dynColor);
 
@@ -23,7 +30,8 @@ button {
 	position: absolute;
 }
 .ratingKey {
-	background: linear-gradient(red 0%, orange 25%, yellow 50%, green 75%, blue 100%);
+	background: linear-gradient(red 0%;
+	 orange 25%, yellow 50%, green 75%, blue 100%);
 }
 .card {
 	background-color: white;
