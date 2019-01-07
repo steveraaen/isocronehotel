@@ -159,7 +159,7 @@ class App extends PureComponent {
     			}
   var rtngScore = (totRtng/arr.length).toFixed(2)
   var rvwsScore = (totRvws/arr.length).toFixed(2)
-  var pxScore = (totCvtPx/arr.length)
+  var pxScore = (totCvtPx/arr.length).toFixed(2)
  	
     	}
     	this.setState({
@@ -292,7 +292,7 @@ expandCircle(nm) {
 	})
 }
   render() {
-
+  	
   	if(this.state.showKey) {
   		var shadeKey = (<div >
         		<DistanceKey showKey={this.state.showKey} toggleKey={this.toggleKey}/>

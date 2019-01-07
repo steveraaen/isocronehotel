@@ -38,7 +38,6 @@ export default class HotelList extends Component {
 
 	render() {
 		if(this.props.hotelsGeoJSON) {
-		
 		var hotels = this.props.hotelsGeoJSON.map((nm, idx) => {
 			var initColor = nm.properties.ratingCol
 			return(<button style={{padding: "12px", opacity: nm.properties.opacity, color: nm.properties.color, backgroundColor: initColor, fontSize: "16pt", overflow: 'ellipsis'}} key={idx} onMouseEnter={() => this.handleMouseEnter(nm)} onMouseLeave={() => this.handleMouseLeave(nm)} onClick={() => this.handleHotelClick(nm.geometry.coordinates[0], nm.geometry.coordinates[1], nm)}>{nm.properties.name}</button>)

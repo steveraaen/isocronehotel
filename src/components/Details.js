@@ -8,7 +8,9 @@ export default class Details extends Component {
         this.state = {}
     }
     render() {
+
         if (this.props.curHotel) {
+             
             return (
                
 					<div style={{paddingLeft: '3vw', color: 'white', backgroundColor: this.props.curHotel.properties.ratingCol, borderWidth: '1px',borderRadius: '12px' }}>

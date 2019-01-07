@@ -16,7 +16,8 @@ button {
 	 border-radius: 10px;
 	 background-color: #121B59;
 	 margin-top: 1vh;
-	 margin-bottom: 1vh;
+	 margin-bottom: .5vh;
+	 padding-bottom: 1vh;
 
 }
 .mapboxgl-popup-content {
@@ -50,7 +51,8 @@ button {
 	justify-content: space-around;
 }
 .details {
-	max-height: 40vh;
+	max-height: 56vh;
+	max-width: 24vw;
 	overflow: scroll;
 }
 tbody {

@@ -11,7 +11,7 @@ export default class RestaurantTable extends Component {
      
          var deets = this.props.resGeoObj.features.map((place, idx) => {
              return (
-            <tr key={idx} onMouseEnter={() => console.log(place)} style={{color: 'white', backgroundColor: place.properties.ratingCol, fontSize: '26px'}}>
+            <tr key={idx} onMouseEnter={() => console.log(place)} style={{color: 'white', backgroundColor: place.properties.ratingCol, fontSize: '22px'}}>
 					<td>{Math.floor(place.properties.distance)}</td>
 					<td>{place.properties.rating}</td>
 					<td style={{textOverflow: 'ellipsis'}}>{place.properties.name}</td>
@@ -24,9 +24,9 @@ export default class RestaurantTable extends Component {
             deets =  (<tr><th>Nothing to show</th></tr>) 
         }
         		return(
-					
-						<Table className="details" style={{maxWidth: "30vw"}}>						
-						<thead>	
+					<div className="details" >
+						<Table>						
+						<thead style={{backgroundColor: '#121B59', color: 'yellow'}}>	
 							<tr>
 								<th>Distance</th>
 								<th>Rating</th>
@@ -40,7 +40,8 @@ export default class RestaurantTable extends Component {
 							{deets}
 							</tbody>
 				
-					</Table>)
+					</Table>
+					</div>)
 
 	}
 }
