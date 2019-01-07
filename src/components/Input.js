@@ -47,12 +47,12 @@ export default class Input extends Component {
             })
         }
         return (
-            <Well style={{backgroundColor: "#0D2B9F"}}>
+            <Well style={{backgroundColor: "#121B59"}}>
       <form>
         <FormGroup
           controlId="formBasicText"
         >
-        <div style={{backgroundColor: "#0D2B9F",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "18pt"}}>
+        <div style={{backgroundColor: "#121B59",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "18pt"}}>
           <ControlLabel>Enter the name of a city</ControlLabel>
           <input
             style={{color: 'black'}}           

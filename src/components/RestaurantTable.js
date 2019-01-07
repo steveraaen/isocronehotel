@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-
+import { Table } from 'react-bootstrap'
 import './CompStyles.css';
 
 export default class RestaurantTable extends Component {
-	connstructor(props) {
+	constructor(props) {
 		super(props)
 	}
 	render() {
         if (this.props.dtls && this.props.resGeoObj) {
-
-
-         console.log(this.props.resGeoObj.features)
+     
          var deets = this.props.resGeoObj.features.map((place, idx) => {
              return (
             <tr key={idx} onMouseEnter={() => console.log(place)} style={{color: 'white', backgroundColor: place.properties.ratingCol, fontSize: '26px'}}>
@@ -20,9 +18,14 @@ export default class RestaurantTable extends Component {
 					<td>{place.properties.type}</td>
 					<td>{place.properties.review_count}</td>
 					<td>{place.properties.price}</td>
-				</tr>
-					<div className="details">
-						<Table style={{maxWidth: "30vw"}}>						
+				</tr>)
+          })
+        } else {
+            deets =  (<tr><th>Nothing to show</th></tr>) 
+        }
+        		return(
+					
+						<Table className="details" style={{maxWidth: "30vw"}}>						
 						<thead>	
 							<tr>
 								<th>Distance</th>
@@ -37,11 +40,7 @@ export default class RestaurantTable extends Component {
 							{deets}
 							</tbody>
 				
-					</Table>
-					</div>)
-         })
-        } else {
-            return null
-        }
+					</Table>)
+
 	}
 }

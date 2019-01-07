@@ -5,7 +5,7 @@ import Map from './components/View.js';
 import Input from './components/Input.js';
 import HotelList from './components/HotelList.js';
 import Details from './components/Details.js';
-/*import RestaurantTable from './components/RestaurantTable.js';*/
+import RestaurantTable from './components/RestaurantTable.js';
 import RestaurantStats from './components/RestaurantStats.js';
 import DistanceKey from './components/DistanceKey.js';
 import RatingKey from './components/RatingKey.js';
@@ -314,7 +314,7 @@ expandCircle(nm) {
         	<div className="asider">
         		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
       	   <RestaurantStats maxReviews={this.state.maxReviews} pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
- 
+ 				<RestaurantTable dtls={this.state.details} resGeoObj={this.state.resGeoObj}/>
       	</div>
 
 
