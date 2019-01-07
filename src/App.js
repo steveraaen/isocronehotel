@@ -157,8 +157,8 @@ class App extends PureComponent {
     				var maxReviews = Math.max.apply(Math, resGeoObj.features.map(function(o) { return o.properties.review_count; }))
     			   
     			}
-  var rtngScore = (totRtng/arr.length)
-  var rvwsScore = (totRvws/arr.length)
+  var rtngScore = (totRtng/arr.length).toFixed(2)
+  var rvwsScore = (totRvws/arr.length).toFixed(2)
   var pxScore = (totCvtPx/arr.length)
  	
     	}
