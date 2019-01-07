@@ -6,6 +6,12 @@ export default class RestaurantStats extends Component {
         super(props)
 
     }
+/*      shouldComponentUpdate(nextProps, nextState) { 
+    if (nextProps.maxReviews === this.props.maxReviews) { 
+      return false;
+    }
+    return true;
+  }*/
     render() {
         if (this.props.pxScore && this.props.rtngScore && this.props.rvwsScore) {
             return (
@@ -15,7 +21,7 @@ export default class RestaurantStats extends Component {
 								<div style={{width: "14vw", fontSize: 24, fontWeight: 'bold', textAlign: 'left'}}>
 									Avg Price(1-3)
 								</div>
-								<div style={{width: 10 * this.props.pxScore , backgroundColor: 'coral', fontSize: 24, fontWeight: 'bold', color: 'black'}}>
+								<div style={{width: 3.333 * this.props.pxScore + "vw", backgroundColor: 'coral', fontSize: 24, fontWeight: 'bold', color: 'black'}}>
 									{parseFloat(this.props.pxScore)}
 								</div>
 						</div>
@@ -24,18 +30,11 @@ export default class RestaurantStats extends Component {
 								<div style={{width: "14vw", fontSize: 24, fontWeight: 'bold', textAlign: 'left'}}>
 									Avg Rating
 								</div>
-								<div style={{width:  4 * this.props.rtngScore +"vw", backgroundColor: 'cyan',  fontSize: 24, fontWeight: 'bold', color: 'black'}}>
+								<div style={{width:  2 * this.props.rtngScore +"vw", backgroundColor: 'cyan',  fontSize: 24, fontWeight: 'bold', color: 'black'}}>
 									{parseFloat(this.props.rtngScore)}
 								</div>
 						</div>						
-						<div style={{display: 'flex', flexDirection: "row"}}>
-								<div style={{width: "14vw", fontSize: 24, fontWeight: 'bold', textAlign: 'left'}}>
-									Popularity
-								</div>
-								<div style={{width: .3 * this.props.rvwsScore + "vw",  backgroundColor: 'pink', fontSize: 24, fontWeight: 'bold', color: 'black'}}>
-									{parseFloat(this.props.rvwsScore)}
-								</div>
-						</div>
+
 				</div>
             )
         } else { return null }

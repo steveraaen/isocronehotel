@@ -52,6 +52,7 @@
   border-radius: 12px;
   display: flex;
   flex-direction: column;
+  max-width: 24vw;
  /* align-items: center;
   justify-content: center;*/
 }

@@ -1,4 +1,4 @@
-import React, { Component,  Suspense, lazy } from 'react';
+import React, { PureComponent,  Suspense, lazy } from 'react';
 import axios from 'axios'
 import './App.css';
 import Map from './components/View.js';
@@ -14,7 +14,7 @@ import choices from './selections.js'
 import europe from './europe.js'
 var w = window.innerWidth;
 var h = window.innerHeight;
-class App extends Component {
+class App extends PureComponent {
 	constructor(props) {
 		super(props)
 		this.state={
@@ -136,18 +136,26 @@ class App extends Component {
     				totRvws = totRvws + arr[i].properties.review_count
     				switch(arr[i].properties.price) {
     					case "€":
+    					case "£":
+    					case "₺":
     					arr[i].properties.cvtPx = 1
     					break;
     					case "€€":
+    					case "££":
+    					case "₺₺":
     					arr[i].properties.cvtPx = 2
     					break;
     					case "€€€":
+    					case "£££":
+    					case "₺₺₺":
     					arr[i].properties.cvtPx = 3
     					break;
     					default:
     					arr[i].properties.cvtPx = 0
     				}
     				totCvtPx = totCvtPx + arr[i].properties.cvtPx
+    				var maxReviews = Math.max.apply(Math, resGeoObj.features.map(function(o) { return o.properties.review_count; }))
+    			   
     			}
   var rtngScore = (totRtng/arr.length)
   var rvwsScore = (totRvws/arr.length)
@@ -157,7 +165,8 @@ class App extends Component {
     	this.setState({
     		rtngScore: rtngScore,
     		rvwsScore: rvwsScore,
-    		pxScore: pxScore
+    		pxScore: pxScore,
+    		maxReviews: maxReviews
 
     	})
 			})					
@@ -304,7 +313,7 @@ expandCircle(nm) {
      	</div>
         	<div className="asider">
         		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
-      	   <RestaurantStats pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
+      	   <RestaurantStats maxReviews={this.state.maxReviews} pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
  
       	</div>
 
