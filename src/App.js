@@ -43,6 +43,7 @@ class App extends PureComponent {
 		 this.hoverOut = this.hoverOut.bind(this)
 		 this.toggleKey = this.toggleKey.bind(this)
 		 this.expandCircle = this.expandCircle.bind(this)
+
 	}
 	zoom() {
 		this.setState({zoom: 16})
@@ -52,7 +53,7 @@ class App extends PureComponent {
 			city: cty,
 			location: loc
 		}, () => {
-			this.getSelectedChain(this.state.city)
+			this.getSelectedChain(cty)
 		})
 		}
 	getRestaurants(lo, la) {
@@ -191,6 +192,11 @@ class App extends PureComponent {
 		axios.get('/hotels',{ params: {city: ct}
     	})
 		.then(val => {	
+			this.setState({
+				resGeoObj: null
+			}, () => {
+
+			})
 			var hotObs = []
 			var geoObj= {
 				type: 'FeatureCollection',
@@ -251,7 +257,6 @@ class App extends PureComponent {
 				}
 			)
 			hotObs.sort((a,b) =>  (b.properties.rating > a.properties.rating) ? 1 : ((a.properties.rating > b.properties.rating) ? -1 : 0)); 		
-
 			}
 			this.setState({
 				geoObj: geoObj,
@@ -279,7 +284,6 @@ hoverOut() {
 		this.getMapAndIso(this.state.city, this.state.location, function() {
 			this.getSelectedChain(this.state.city)
 		})
-		
 	}
 	toggleKey() {
 		this.setState({
@@ -292,7 +296,6 @@ expandCircle(nm) {
 	})
 }
   render() {
-  	
   	if(this.state.showKey) {
   		var shadeKey = (<div >
         		<DistanceKey showKey={this.state.showKey} toggleKey={this.toggleKey}/>
@@ -302,9 +305,9 @@ expandCircle(nm) {
       <div>
         <Map curHotel={this.state.curHotel} resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
         <div className="input">     
-        		<Input getMapAndIso={this.getMapAndIso}/>
+        		<Input getMapAndIso={this.getMapAndIso} />
         	<div className="asideCities">
-        		<HotelList expandCircle={this.expandCircle} curHotel={this.state.curHotel} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
+        		<HotelList getMapAndIso={this.getMapAndIso} expandCircle={this.expandCircle} curHotel={this.state.curHotel} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
       	</div>
          	<div className="aside">
       	{shadeKey}
@@ -316,8 +319,6 @@ expandCircle(nm) {
       	   <RestaurantStats maxReviews={this.state.maxReviews} pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
  				<RestaurantTable dtls={this.state.details} resGeoObj={this.state.resGeoObj}/>
       	</div>
-
-
       </div>
     );
   }

@@ -23,9 +23,15 @@ handleHover(b) {
   
 }
 handleHoverOut() {
-  this.props.hoverOut()
-  
+  this.props.hoverOut() 
 }
+/*componentDidMount() {
+  if(this.props.hotelsGeoJSON) {
+    this.setState({
+      hgj: this.props.hotelsGeoJSON
+    })
+  }
+}*/
 render() {
   var points
   if(this.props.hoverHotel) {

@@ -47,7 +47,7 @@ export default class Input extends Component {
             })
         }
         return (
-            <Well style={{backgroundColor: "#121B59"}}>
+            <Well style={{backgroundColor: "#121B59", borderWidth: '1px', borderRadius: '12px'}}>
       <form>
         <FormGroup
           controlId="formBasicText"

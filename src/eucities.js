@@ -63,7 +63,7 @@ var eucities = [
 		"lat" : 51.2204
 	},
 	{
-		"city" : "Brugge",
+		"city" : "Bruges",
 		"country" : "Belgium",
 		"cntrycode" : "BE",
 		"lng" : 3.2300,
@@ -2210,6 +2210,13 @@ var eucities = [
 		"cntrycode" : "TR",
 		"lng" : 38.3900,
 		"lat" : 40.9130
+	},
+	{
+		"city" : "Goreme",
+		"country" : "Turkey",
+		"cntrycode" : "TR",
+		"lng" : 34.83529,
+		"lat" : 38.6437
 	},
 	{
 		"city" : "Hakkari",

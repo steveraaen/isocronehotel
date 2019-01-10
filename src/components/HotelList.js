@@ -17,10 +17,10 @@ export default class HotelList extends Component {
 	}
 
 	handleHotelClick(lo, la, nm) {
-		const { getRestaurants, getIso } = this.props		
+		const { getRestaurants, getIso, getMapAndIso } = this.props		
  		getRestaurants(lo, la)
 		setTimeout(function() {
-			getIso(lo, la, nm)
+			getMapAndIso( nm, [lo, la])
 		}, 2000)	
 	}
 

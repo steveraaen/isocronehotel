@@ -14,7 +14,8 @@ export default class Details extends Component {
             return (
                
 					<div style={{paddingLeft: '3vw', color: 'white', backgroundColor: this.props.curHotel.properties.ratingCol, borderWidth: '1px',borderRadius: '12px' }}>
-						<h2>{this.props.curHotel.properties.name}</h2>
+						
+                        <h2>{this.props.curHotel.properties.name}</h2>
 						<h2>{this.props.curHotel.properties.location.address1}</h2>
 						<h3>Yelp Rating: {this.props.curHotel.properties.rating}</h3>
 						<span className="price">Cost: {this.props.curHotel.properties.price}</span>			
