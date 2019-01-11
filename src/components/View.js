@@ -74,7 +74,19 @@ return (<GeoJSONLayer
       />
       )
   }
-
+  if(this.props.curRest) {
+    console.log(this.props.curRest)
+    var cr = (
+      <GeoJSONLayer
+      data={this.props.curRest}
+      type='circle' 
+      circlePaint={{
+        'circle-color': 'coral',
+        'circle-radius': {stops: [[14, 20], [16, 8]]}
+      }}
+      />
+      )
+  }
   if(this.props.hotelsGeoJSON && !this.props.resGeoObj) { 
   points = this.props.hotelsGeoJSON.map(( pt, idx) => {
   return(
@@ -154,6 +166,7 @@ return(
   <div>{isos}</div>
   <div>{ppup}</div>
   <div>{ch}</div>
+  <div>{cr}</div>
 
 </Map>
 

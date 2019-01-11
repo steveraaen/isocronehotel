@@ -43,6 +43,7 @@ class App extends PureComponent {
 		 this.hoverOut = this.hoverOut.bind(this)
 		 this.toggleKey = this.toggleKey.bind(this)
 		 this.expandCircle = this.expandCircle.bind(this)
+		 this.expandRestCircle = this.expandRestCircle.bind(this)
 
 	}
 	zoom() {
@@ -295,6 +296,11 @@ expandCircle(nm) {
 		curHotel: nm
 	})
 }
+expandRestCircle(rst) {
+	this.setState({
+		curRest: rst
+	})
+}
   render() {
   	if(this.state.showKey) {
   		var shadeKey = (<div >
@@ -303,7 +309,7 @@ expandCircle(nm) {
   	} else{ shadeKey = null}
     return (
       <div>
-        <Map curHotel={this.state.curHotel} resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
+        <Map curHotel={this.state.curHotel} curRest={this.state.curRest} resGeoObj={this.state.resGeoObj} ratingColors={this.state.ratingColors} hover={this.hover} hoverOut={this.hoverOut} dtls={this.state.details} isoList={this.state.isoList} appState={this.state} hotels={this.state.hotels} hotelsGeoJSON={this.state.hotelsGeoJSON}isoMarkers={this.state.isoMarkers} hoverHotel={this.state.hoverHotel} updateLocation={this.updateLocation} />
         <div className="input">     
         		<Input getMapAndIso={this.getMapAndIso} />
         	<div className="asideCities">
@@ -317,7 +323,7 @@ expandCircle(nm) {
         	<div className="asider">
         		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
       	   <RestaurantStats maxReviews={this.state.maxReviews} pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
- 				<RestaurantTable dtls={this.state.details} resGeoObj={this.state.resGeoObj}/>
+ 				<RestaurantTable expandRestCircle={this.expandRestCircle} dtls={this.state.details} resGeoObj={this.state.resGeoObj}/>
       	</div>
       </div>
     );
