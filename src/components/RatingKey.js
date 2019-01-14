@@ -10,8 +10,8 @@ export default class RatingKey extends Component {
 		
 	
 			return(
-			<div style={{marginTop:"1vh", width: "22vw", backgroundColor: "#121B59", textAlign: 'center', fontSize: '2vw', fontWeight: 'bold',color: "yellow", padding: "15px", borderWidth: "5px", borderColor: "white", borderRadius: "8px"}}>
-				<Collapsible trigger="Ratings Key" triggerStyle={{width: ".24vw", backgroundColor: "#121B59", textAlign: 'center', fontSize: '2vw', fontWeight: 'bold',color: "yellow", padding: "15px", borderWidth: "5px", borderColor: "white", borderRadius: "8px"}}>				
+			<div style={{width: "18vw", backgroundColor: "#121B59", textAlign: 'center', fontSize: '1.4vw', fontWeight: 'bold',color: "yellow", paddingTop: "1vw", paddingBottom: "1vw",borderWidth: ".6vw", borderRadius: ".6vw"}}>
+				<Collapsible trigger="Ratings Key" >				
 					<div style={{flex: 1, flexDirection: 'column'}}>
 						<div style={{backgroundColor: this.props.ratingColors[8], flex: .1, color: "white"}}>5</div>
 						<div style={{backgroundColor: this.props.ratingColors[7], flex: .1, color: "white"}}>4.5</div>

@@ -43,7 +43,7 @@ export default class Input extends Component {
     render() {
         if (this.state.cmap) {
             var matches = this.state.cmap.map((lne, idx) => {
-                return (<div key={idx} style={{flexDirection: 'column'}}><button style={{minWidth: '22vw'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
+                return (<div key={idx} style={{flexDirection: 'column'}}><button style={{width: '18vw'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
             })
         }
         return (
@@ -52,7 +52,7 @@ export default class Input extends Component {
         <FormGroup
           controlId="formBasicText"
         >
-        <div style={{backgroundColor: "#121B59",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "1.8vw"}}>
+        <div style={{backgroundColor: "#121B59",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "1.4vw"}}>
           <ControlLabel>Enter the name of a city</ControlLabel>
           <input
             style={{color: 'black'}}           

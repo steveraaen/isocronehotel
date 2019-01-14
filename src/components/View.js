@@ -18,7 +18,7 @@ constructor(props) {
 }
 
 handleHover(b) {
- console.log(b)
+ /*console.log(b)*/
   this.props.hover(b)
   
 }
@@ -62,7 +62,7 @@ return (<GeoJSONLayer
 
 // ------------------ make hotel markers
   if(this.props.curHotel) {
-    console.log(this.props.curHotel)
+   /* console.log(this.props.curHotel)*/
     var ch = (
       <GeoJSONLayer
       data={this.props.curHotel}
@@ -87,7 +87,7 @@ return (<GeoJSONLayer
       />
       )
   }
-  if(this.props.hotelsGeoJSON && !this.props.resGeoObj) { 
+  if(this.props.hotelsGeoJSON /*&& !this.props.resGeoObj*/) { 
   points = this.props.hotelsGeoJSON.map(( pt, idx) => {
   return(
       <GeoJSONLayer      

@@ -1,4 +1,4 @@
-import React, { PureComponent,  Suspense, lazy } from 'react';
+import React, { Component,  Suspense, lazy } from 'react';
 import axios from 'axios'
 import './App.css';
 import Map from './components/View.js';
@@ -14,7 +14,7 @@ import choices from './selections.js'
 import europe from './europe.js'
 var w = window.innerWidth;
 var h = window.innerHeight;
-class App extends PureComponent {
+class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state={
@@ -50,6 +50,7 @@ class App extends PureComponent {
 		this.setState({zoom: 16})
 	}
 	getMapAndIso(cty, loc) {
+		console.log('getMapAndIso called')
 		this.setState({
 			city: cty,
 			location: loc
@@ -58,6 +59,7 @@ class App extends PureComponent {
 		})
 		}
 	getRestaurants(lo, la) {
+		console.log('getRestaurants called')
 		console.log(lo, la)
 		axios.get('/details',{ params: {longitude: lo, latitude: la}})
 				.then( (res) => {
@@ -193,11 +195,7 @@ class App extends PureComponent {
 		axios.get('/hotels',{ params: {city: ct}
     	})
 		.then(val => {	
-			this.setState({
-				resGeoObj: null
-			}, () => {
 
-			})
 			var hotObs = []
 			var geoObj= {
 				type: 'FeatureCollection',
@@ -313,15 +311,17 @@ expandRestCircle(rst) {
         <div className="input">     
         		<Input getMapAndIso={this.getMapAndIso} />
         	<div className="asideCities">
-        		<HotelList getMapAndIso={this.getMapAndIso} expandCircle={this.expandCircle} curHotel={this.state.curHotel} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
+        		<HotelList getMapAndIso={this.getMapAndIso} getIso={this.getIso} expandCircle={this.expandCircle} curHotel={this.state.curHotel} ratingColors={this.state.ratingColors} hotelsGeoJSON={this.state.hotelsGeoJSON} activeColor={this.state.activeColor} hoverHotel={this.state.hoverHotel} zoom={this.zoom} city={this.state.city} chain={this.state.chain} hotels={this.state.hotels} getIso={this.getIso} getRestaurants={this.getRestaurants}/>
       	</div>
          	<div className="aside">
       	{shadeKey}
       	<RatingKey ratingColors={this.state.ratingColors} />
       	</div> 
      	</div>
+     	<div className="bannerTop">
+     		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
+     	</div>
         	<div className="asider">
-        		<Details resGeoObj={this.state.resGeoObj} dtls={this.state.details} curHotel={this.state.curHotel}/>
       	   <RestaurantStats maxReviews={this.state.maxReviews} pxScore={this.state.pxScore} rtngScore={this.state.rtngScore} rvwsScore={this.state.rvwsScore} />
  				<RestaurantTable expandRestCircle={this.expandRestCircle} dtls={this.state.details} resGeoObj={this.state.resGeoObj}/>
       	</div>

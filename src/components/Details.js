@@ -13,7 +13,7 @@ export default class Details extends Component {
              
             return (
                
-					<div style={{paddingLeft: '3vw', color: 'white', backgroundColor: this.props.curHotel.properties.ratingCol, borderWidth: '1px',borderRadius: '12px' }}>
+					<div style={{padding: '3vw', color: 'black', backgroundColor: 'white', borderColor: 'black', borderWidth: '1vw',borderRadius: '12px' }}>
 						
                         <h2>{this.props.curHotel.properties.name}</h2>
 						<h2>{this.props.curHotel.properties.location.address1}</h2>

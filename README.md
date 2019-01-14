@@ -10,20 +10,19 @@ This site uses "walking".<br>
 
 ### Displays / Lifecycle
 
-### Hotels
+### Cities
 The default location is Madrid, Spain.
-There is a "no dependency" autocomplete input at the upper left that allows the user to input the partial name of a major city.
-User is presented with a list of matching cities.  
+There is a "vanilla" autocomplete input at the upper left that allows the user to input the partial name of a major city, and the user is presented with a list of matching cities. 
+Clicking a city will re-center the map, retrieve a list of hotels, and draw a new isochrone around the city center 
+The list of cities is not color coded.<br>
 
-The list of cities is not color coded.
-Clicking a city will re-center the map, retrieve a list of hotels, and draw a new isochrone around the hotel closest to the city center.<br>
-
-It will also place circle markers on the map, representing each hotel on the list.<br>
-MouseOver a circle marker to view the name of the hotel in a popup.<br>
-Click the hotel (on the list) to view the hotel details as well as a list of the nearest restaurants. 
+### Hotels
+A list of hotels nearest the city center is displayed by clicking "Hotels in (city name)", and circle markers appear on the map, color coded by the Yelp rating each hotel.  Mousing over the hotel on the list will present a larger, different colored circle to indicate the hotel's location.  Mousing over the circle marker displays the hotel name in a tooltip.<br>
+ 
+Clicking the hotel (on the list) will display details about the hotel as well as a list of the nearest restaurants, and the map will zoom on the hotel and replace the hotel markers with restaurant markers.
 
 ### Restaurants
-When a hotel is clicked, the map will zoom on the hotel and replace the hotel markers with restaurant markers.
+
 ### Color Coding
 
 The list of hotels and restaurants is sorted by the overall Yelp rating, form best to worst.<br>

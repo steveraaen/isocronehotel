@@ -19,18 +19,14 @@ export default class HotelList extends Component {
 	handleHotelClick(lo, la, nm) {
 		const { getRestaurants, getIso, getMapAndIso } = this.props		
  		getRestaurants(lo, la)
-		setTimeout(function() {
-			getMapAndIso( nm, [lo, la])
-		}, 2000)	
+		getIso(lo, la)
 	}
-
 	handleMouseEnter(n) {
 	n.properties.opacity = .8		
 	n.properties.color = "yellow"	
 		this.props.expandCircle(n)
 	}
 	handleMouseLeave(n) {
-		console.log(n)
 	n.properties.opacity = 1
 	n.properties.color = "white"			
 	
@@ -40,14 +36,14 @@ export default class HotelList extends Component {
 		if(this.props.hotelsGeoJSON) {
 		var hotels = this.props.hotelsGeoJSON.map((nm, idx) => {
 			var initColor = nm.properties.ratingCol
-			return(<button style={{ opacity: nm.properties.opacity, color: nm.properties.color, backgroundColor: initColor, fontSize: "1vw", overflow: 'ellipsis'}} key={idx} onMouseEnter={() => this.handleMouseEnter(nm)} onMouseLeave={() => this.handleMouseLeave(nm)} onClick={() => this.handleHotelClick(nm.geometry.coordinates[0], nm.geometry.coordinates[1], nm)}>{nm.properties.name}</button>)
+			return(<button style={{ opacity: nm.properties.opacity, color: nm.properties.color, backgroundColor: initColor, fontSize: "1vw", overflow: 'ellipsis'}} key={idx} onMouseEnter={() => this.handleMouseEnter(nm)} onMouseLeave={() => this.handleMouseLeave(nm)} onClick={() => this.handleHotelClick(nm.geometry.coordinates[0], nm.geometry.coordinates[1], this.props.city)}>{nm.properties.name}</button>)
 		})
 	} else { 
 		 hotels = (<div>Nothing to show</div>) 
 		return  hotels 
 	}
 		return (	
-<div style={{width: "22vw", backgroundColor: "#121B59", textAlign: 'center', fontSize: '2vw', fontWeight: 'bold',color: "yellow", padding: "15px", borderWidth: "5px", borderRadius: "8px"}}>
+<div style={{width: "18vw", backgroundColor: "#121B59", textAlign: 'center', fontSize: '1.4vw', fontWeight: 'bold',color: "yellow", paddingTop: "1vw", paddingBottom: "1vw",borderWidth: ".6vw", borderRadius: ".6vw"}}>
       <Collapsible trigger={"Hotels in " + this.props.city  }   >
       <div style={{padding: '1vh', display: 'flex', flexDirection: 'column'}}>
   			{hotels}
