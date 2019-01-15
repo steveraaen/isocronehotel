@@ -16,7 +16,7 @@ export default class RestaurantTable extends Component {
          var deets = this.props.resGeoObj.features.map((place, idx) => {
              return (
             <tr key={idx} onMouseEnter={() => this.handleMouseEnter(place)} style={{color: 'white', backgroundColor: place.properties.ratingCol, fontSize: '22px'}}>
-					<td>{Math.floor(place.properties.distance)}</td>
+					<td>{Math.floor(place.properties.distance) + " M"}</td>
 					<td>{place.properties.rating}</td>
 					<td style={{textOverflow: 'ellipsis'}}>{place.properties.name}</td>
 					<td>{place.properties.type}</td>

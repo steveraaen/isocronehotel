@@ -28,8 +28,8 @@
 .bannerTop {
   left: 36vw;
   top: 5vh;
-  width: 20vw;
-  max-height: 12vh;
+  width: 24vw;
+  min-height: 20vh;
   position: absolute;
 /*  border-width: 2px;
   border-radius: 6px;
