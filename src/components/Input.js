@@ -19,7 +19,7 @@ export default class Input extends Component {
                 if (cty.city.toUpperCase().includes(this.state.value.toUpperCase())) {
                     ccty.push(cty)
                 }
-                return ccty
+                /*return ccty*/
             })
             this.setState({ cmap: ccty })
         });

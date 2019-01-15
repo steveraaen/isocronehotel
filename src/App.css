@@ -28,7 +28,8 @@
 .bannerTop {
   left: 36vw;
   top: 5vh;
-  width: 28vw;
+  width: 20vw;
+  max-height: 12vh;
   position: absolute;
   border-radius: 6px;
   color: white;
