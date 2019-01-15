@@ -77,25 +77,25 @@ class App extends Component {
 						    ratingCol[i] = colors[0]
 						    break;
 						  case 1.5:  
-						    ratingCol[i] = colors[1]
+						    ratingCol[i] = colors[0]
 						    break;
 						  case 2:  
 						    ratingCol[i] = colors[2]
 						    break;
     						case 2.5:  
-						    ratingCol[i] = colors[3]
+						    ratingCol[i] = colors[2]
 						    break;
     						case 3:  
 						    ratingCol[i] = colors[4]
 						    break;
     						case 3.5:  
-						    ratingCol[i] = colors[5]
+						    ratingCol[i] = colors[4]
 						    break;
     						case 4:  
 						    ratingCol[i] = colors[6]
 						    break;
     						case 4.5:  
-						    ratingCol[i] = colors[7]
+						    ratingCol[i] = colors[6]
 						    break;
     						case 5:  
 						    ratingCol[i] = colors[8]	
@@ -210,25 +210,25 @@ class App extends Component {
 						    ratingCol[i] = colors[0]
 						    break;
 						  case 1.5:  
-						    ratingCol[i] = colors[1]
+						    ratingCol[i] = colors[0]
 						    break;
 						  case 2:  
 						    ratingCol[i] = colors[2]
 						    break;
     						case 2.5:  
-						    ratingCol[i] = colors[3]
+						    ratingCol[i] = colors[2]
 						    break;
     						case 3:  
 						    ratingCol[i] = colors[4]
 						    break;
     						case 3.5:  
-						    ratingCol[i] = colors[5]
+						    ratingCol[i] = colors[4]
 						    break;
     						case 4:  
 						    ratingCol[i] = colors[6]
 						    break;
     						case 4.5:  
-						    ratingCol[i] = colors[7]
+						    ratingCol[i] = colors[6]
 						    break;
     						case 5:  
 						    ratingCol[i] = colors[8]	

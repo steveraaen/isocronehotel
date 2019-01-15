@@ -26,7 +26,7 @@ export default class RestaurantTable extends Component {
           })
         } else {
             deets =  (<tr><th>Nothing to show</th></tr>) 
-        }
+        } if(this.props.dtls) {
         		return(
 					<div className="details" >
 						<Table>						
@@ -46,6 +46,7 @@ export default class RestaurantTable extends Component {
 				
 					</Table>
 					</div>)
+        	} else {return <div></div>}
 
 	}
 }
