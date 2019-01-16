@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap'
 import './CompStyles.css';
 
-export default class RestaurantTable extends Component {
+export default class RestaurantTableB extends Component {
 	constructor(props) {
 		super(props)
 		this.handleMouseEnter = this.handleMouseEnter.bind(this)
@@ -30,7 +30,7 @@ export default class RestaurantTable extends Component {
         		return(
 					<div className="details" >
 						<Table>						
-						<thead style={{backgroundColor: '#121B59', color: 'yellow'}}>	
+						<thead style={{backgroundColor: 'rgba(0,0,0,.6)', color: 'yellow'}}>	
 							<tr>
 								<th>Distance</th>
 								<th>Rating</th>

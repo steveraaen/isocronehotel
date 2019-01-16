@@ -43,17 +43,14 @@ export default class Input extends Component {
     render() {
         if (this.state.cmap) {
             var matches = this.state.cmap.map((lne, idx) => {
-                return (<div key={idx} style={{flexDirection: 'column'}}><button style={{width: '18vw'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
+                return (<div key={idx} style={{flexDirection: 'column'}}><button style={{width: '18vw', color: 'black'}}onClick={() => this.handleClick([lne.city, lne.cntrycode],[lne.lng, lne.lat])}>{lne.city + ", " + lne.cntrycode} </button></div>)
             })
         }
         return (
-            <Well style={{backgroundColor: "#121B59", borderWidth: '.1vw', borderRadius: '1vw'}}>
-      <form>
-        <FormGroup
-          controlId="formBasicText"
-        >
-        <div style={{backgroundColor: "#121B59",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "1.4vw"}}>
-          <ControlLabel>Enter the name of a city</ControlLabel>
+            <Well style={{color: 'yellow', fontSize: "1.4vw", fontWeight: 'bold', backgroundColor: "rgba(0,0,0,.6)", borderWidth: '.1vw', borderRadius: '1vw'}}>
+            Search for a European city
+        <div style={{backgroundColor: "rgb(255,255,255)",color: 'yellow', display: 'flex',flexDirection: 'column', fontSize: "1.4vw"}}>
+          
           <input
             style={{color: 'black'}}           
             value={this.state.value}
@@ -62,9 +59,7 @@ export default class Input extends Component {
           />
          </div>
          <div style={{maxHeight: '38vh', overflow: 'auto', listStyleType:"none", flexDirection: 'column', flexWrap: 'wrap'}}>{matches}</div>
-     
-        </FormGroup>
-      </form>
+ 
       </Well>
         )
     }

@@ -1,10 +1,10 @@
 button {
 	font-size: 14pt;
 	font-weight: bold;
-	border-width: 1px;
-	border-color: 6px;
-	border-radius: 12px;
-	margin-bottom: .5vh;
+	border-left: none;
+	border-right: none;
+	padding-top: .5vh;
+	padding-bottom: .5vh;
 	 text-overflow: ellipsis;
 
 }
@@ -14,7 +14,7 @@ button {
 	 border-width: 4px;
 	 border-color: white;
 	 border-radius: 10px;
-	 background-color: #121B59;
+	 background-color: rgba(0,0,0,.8);
 	 margin-top: 1vh;
 	 margin-bottom: .5vh;
 	 padding-bottom: 1vh;
@@ -69,3 +69,30 @@ tbody {
 	font-size: 20pt;
 	color: blue;
 }
+.wrapper {
+    display: grid;
+    grid-template-columns: 3vw 3vw 6vw 6vw 3vw 3vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
